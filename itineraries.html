@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Your Visit — Hobart Book Village Itineraries</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --cream: #FAF6F1; --warm-white: #FFFDF9; --parchment: #F0E8DC;
+            --leather: #8B6914; --deep-green: #2D4A3E; --forest: #1A3329;
+            --ink: #1C1917; --warm-gray: #78716C; --light-gray: #D6D3D1;
+            --gold: #D4A843; --sage: #87A889;
+            --soft-shadow: 0 4px 30px rgba(28, 25, 23, 0.08);
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--cream); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-weight: 500; line-height: 1.2; }
+
+        /* NAV */
+        nav { background: rgba(250, 246, 241, 0.95); backdrop-filter: blur(20px); box-shadow: 0 1px 20px rgba(28,25,23,0.08); position: sticky; top: 0; z-index: 1000; }
+        .nav-inner { max-width: 1300px; margin: 0 auto; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 0.6rem; }
+        .nav-logo-img { height: 42px; width: 42px; border-radius: 50%; object-fit: contain; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none; color: var(--warm-gray); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--ink); }
+        .nav-cta { background: var(--deep-green) !important; color: var(--warm-white) !important; padding: 0.6rem 1.5rem !important; border-radius: 4px; }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; width: 28px; height: 20px; position: relative; }
+        .mobile-toggle span { display: block; width: 100%; height: 2px; background: var(--ink); position: absolute; left: 0; transition: all 0.3s; }
+        .mobile-toggle span:nth-child(1) { top: 0; } .mobile-toggle span:nth-child(2) { top: 9px; } .mobile-toggle span:nth-child(3) { bottom: 0; }
+
+        /* PAGE HERO */
+        .page-hero { background: var(--forest); padding: 8rem 2rem 5rem; text-align: center; }
+        .page-hero h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); color: var(--warm-white); font-weight: 400; margin-bottom: 1rem; }
+        .page-hero p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: rgba(255,253,249,0.7); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+        /* TAB SYSTEM */
+        .tabs-section { padding: 4rem 2rem; }
+        .tabs-container { max-width: 1000px; margin: 0 auto; }
+        .tab-buttons { display: flex; gap: 0.5rem; margin-bottom: 3rem; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; padding: 0.8rem 1.8rem; border: 1.5px solid var(--light-gray); background: var(--warm-white); color: var(--warm-gray); border-radius: 4px; cursor: pointer; transition: all 0.3s; }
+        .tab-btn:hover { border-color: var(--deep-green); color: var(--deep-green); }
+        .tab-btn.active { background: var(--deep-green); color: var(--warm-white); border-color: var(--deep-green); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ITINERARY STYLES */
+        .itin-day { background: var(--warm-white); border-radius: 8px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--soft-shadow); }
+        .itin-day-header { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .itin-day-num { width: 50px; height: 50px; border-radius: 50%; background: var(--deep-green); color: var(--warm-white); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; flex-shrink: 0; }
+        .itin-day-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--ink); }
+        .itin-day-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--warm-gray); }
+        .itin-block { display: flex; gap: 1rem; margin-bottom: 1.2rem; padding: 1rem 0; border-bottom: 1px solid rgba(0,0,0,0.04); }
+        .itin-block:last-child { border-bottom: none; margin-bottom: 0; }
+        .itin-time { flex-shrink: 0; width: 90px; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--leather); text-transform: uppercase; letter-spacing: 0.05em; padding-top: 0.15rem; }
+        .itin-activity h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 0.3rem; }
+        .itin-activity p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--warm-gray); line-height: 1.6; }
+        .itin-tip { background: var(--parchment); border-radius: 6px; padding: 1.2rem 1.5rem; margin-top: 1.5rem; display: flex; gap: 0.8rem; align-items: flex-start; }
+        .itin-tip-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .itin-tip p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--warm-gray); line-height: 1.6; }
+        .itin-tip strong { color: var(--ink); }
+
+        /* WHERE TO STAY */
+        .stays-section { background: var(--warm-white); padding: 5rem 2rem; }
+        .stays-container { max-width: 1100px; margin: 0 auto; }
+        .stays-header { text-align: center; margin-bottom: 3rem; }
+        .stays-header .label { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.25em; color: var(--leather); margin-bottom: 1rem; display: block; }
+        .stays-header h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 1rem; font-weight: 400; }
+        .stays-header p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--warm-gray); max-width: 600px; margin: 0 auto; }
+        .stays-featured { background: var(--forest); border-radius: 8px; padding: 3rem; margin-bottom: 2.5rem; display: flex; gap: 2.5rem; align-items: center; color: var(--warm-white); }
+        .stays-featured-img { width: 200px; height: 200px; border-radius: 8px; object-fit: cover; flex-shrink: 0; }
+        .stays-featured .tag { font-family: 'Inter', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.6rem; display: block; }
+        .stays-featured h3 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .stays-featured p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: rgba(255,253,249,0.7); line-height: 1.7; margin-bottom: 1rem; }
+        .stays-featured .link { font-family: 'Inter', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); text-decoration: none; }
+        .stays-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.5rem; }
+        .stay-listing { background: var(--cream); border-radius: 8px; padding: 1.8rem; transition: all 0.3s; border: 1px solid transparent; }
+        .stay-listing:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: var(--soft-shadow); }
+        .stay-listing h3 { font-size: 1.15rem; margin-bottom: 0.4rem; font-weight: 500; }
+        .stay-listing .type { font-family: 'Inter', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--leather); margin-bottom: 0.6rem; display: block; }
+        .stay-listing p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--warm-gray); line-height: 1.6; margin-bottom: 1rem; }
+        .stay-listing a { font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--deep-green); text-decoration: none; font-weight: 500; }
+        .stay-listing a:hover { color: var(--leather); }
+
+        /* FOOTER */
+        footer { background: var(--ink); color: rgba(255,253,249,0.5); padding: 3rem 2rem; text-align: center; }
+        footer a { color: var(--gold); text-decoration: none; }
+        footer p { font-size: 0.85rem; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .tab-buttons { gap: 0.3rem; }
+            .tab-btn { padding: 0.6rem 1rem; font-size: 0.72rem; }
+            .itin-block { flex-direction: column; gap: 0.3rem; }
+            .itin-time { width: auto; }
+            .stays-featured { flex-direction: column; text-align: center; }
+            .stays-featured-img { width: 100%; height: 200px; }
+            .stays-grid { grid-template-columns: 1fr; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,241,0.98); backdrop-filter: blur(20px); padding: 2rem; gap: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="Hobart Book Village" class="nav-logo-img">
+                Hobart Book Village
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#bookstores">Bookstores</a></li>
+                <li><a href="index.html#events">Events</a></li>
+                <li><a href="index.html#stay">Stay & Dine</a></li>
+                <li><a href="index.html#history">History</a></li>
+                <li><a href="itineraries.html" style="color:var(--ink);">Itineraries</a></li>
+                <li><a href="index.html#stay" class="nav-cta">Plan Your Trip</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <h1>Plan Your Visit</h1>
+        <p>Whether you have a few hours or a full week, we've built the perfect itinerary to help you make the most of Hobart Book Village and the surrounding Catskills.</p>
+    </div>
+
+    <!-- ITINERARIES -->
+    <section class="tabs-section">
+        <div class="tabs-container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="day">Day Trip</button>
+                <button class="tab-btn" data-tab="weekend">Weekend</button>
+                <button class="tab-btn" data-tab="three">3 Days</button>
+                <button class="tab-btn" data-tab="week">Full Week</button>
+            </div>
+
+            <!-- DAY TRIP -->
+            <div class="tab-content active" id="tab-day">
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">1</div>
+                        <div><div class="itin-day-title">The Perfect Day in Hobart</div><div class="itin-day-subtitle">A full day of books, food, and village charm</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">10:00 AM</div><div class="itin-activity"><h4>Arrive & Coffee</h4><p>Roll into the village and grab a coffee to fuel your bookshop crawl. Stroll Main Street and take in the quiet charm before the shops open.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">11:00 AM</div><div class="itin-activity"><h4>Start at Blenheim Hill Books</h4><p>Warm up with one of the village's most beloved shops. Browse mysteries, poetry, women's studies, and a wonderful children's section.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">12:00 PM</div><div class="itin-activity"><h4>Wm. H. Adams' Antiquarian</h4><p>Step into three floors of rare books, many printed before 1850. History, architecture, art, and literature from centuries past.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">1:00 PM</div><div class="itin-activity"><h4>Lunch at The Inn Bar</h4><p>Take a break with seasonal bites and a craft cocktail or local brew at the Book Village Inn's bar. You've earned it.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">2:00 PM</div><div class="itin-activity"><h4>Liberty Rock & Creative Corner</h4><p>Hit the village's largest bookstore, then pop into Creative Corner for cookbooks, crafts, and locally made goods.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">3:30 PM</div><div class="itin-activity"><h4>The Shops Around the Corner</h4><p>Cross over to 40 Cornell Ave for More Good Books, Quarry Books (honor system!), and the other unique shops in the annex.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">4:30 PM</div><div class="itin-activity"><h4>One Last Browse & Sunset</h4><p>Circle back to whichever shop caught your eye earlier. Grab your finds, then enjoy a golden hour walk through the village before heading home.</p></div></div>
+                    <div class="itin-tip"><span class="itin-tip-icon">&#128161;</span><p><strong>Pro tip:</strong> Most shops are open Saturday &amp; Sunday, 11&ndash;5. Plan your day trip on a weekend for the full experience.</p></div>
+                </div>
+            </div>
+
+            <!-- WEEKEND -->
+            <div class="tab-content" id="tab-weekend">
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">1</div>
+                        <div><div class="itin-day-title">Saturday &mdash; The Full Village Tour</div><div class="itin-day-subtitle">Settle in and explore every bookshop</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>Check In & Coffee</h4><p>Arrive at the Book Village Inn (or your Airbnb), drop your bags, and stroll Main Street with a coffee in hand.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">11 AM</div><div class="itin-activity"><h4>Bookshop Crawl: Part 1</h4><p>Start with Blenheim Hill Books, Wm. H. Adams' Antiquarian, and Liberty Rock Books. Take your time &mdash; you have all weekend.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">1 PM</div><div class="itin-activity"><h4>Lunch at The Inn Bar</h4><p>Seasonal food, craft cocktails, and the warmth of the village's favorite gathering spot.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Bookshop Crawl: Part 2</h4><p>Creative Corner, NY Books &amp; Ephemera, and the Shops Around the Corner. Find your treasures.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Evening</div><div class="itin-activity"><h4>Dinner & Reading</h4><p>Dine locally, then curl up at the Inn with your new haul. There's no better way to spend a Saturday night.</p></div></div>
+                </div>
+
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">2</div>
+                        <div><div class="itin-day-title">Sunday &mdash; Nature & Slow Morning</div><div class="itin-day-subtitle">Trails, farm stands, and a farewell browse</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>Slow Start & Walk</h4><p>Sleep in, grab breakfast, and take a walk along the West Branch of the Delaware River or explore nearby covered bridges.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Late AM</div><div class="itin-activity"><h4>Catskill Hiking</h4><p>Drive 20 minutes to trailheads for moderate hikes with stunning mountain views. The Catskills don't disappoint in any season.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Farewell Browse & Farm Stands</h4><p>Pop back into your favorite shop for that book you almost bought yesterday. Pick up local produce or cheese at a nearby farm stand.</p></div></div>
+                    <div class="itin-tip"><span class="itin-tip-icon">&#128161;</span><p><strong>Pro tip:</strong> Book the Inn for Saturday night &mdash; you'll be steps from every shop and won't have to worry about the drive.</p></div>
+                </div>
+            </div>
+
+            <!-- 3 DAYS -->
+            <div class="tab-content" id="tab-three">
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">1</div>
+                        <div><div class="itin-day-title">Day One &mdash; Arrival & Village Immersion</div><div class="itin-day-subtitle">Get to know Hobart at a leisurely pace</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Arrive & Settle In</h4><p>Check into the Inn or your rental. Walk Main Street end to end. Pop into a couple of shops that catch your eye.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Evening</div><div class="itin-activity"><h4>Welcome Dinner at The Inn Bar</h4><p>Craft cocktails, local fare, and conversation with fellow travelers and village regulars.</p></div></div>
+                </div>
+
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">2</div>
+                        <div><div class="itin-day-title">Day Two &mdash; The Grand Bookshop Tour</div><div class="itin-day-subtitle">Every shop, every shelf, all day long</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>Coffee & Start at Blenheim Hill</h4><p>Begin the full crawl. Take your time in each shop &mdash; talk to the owners, hear their stories.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Midday</div><div class="itin-activity"><h4>Antiquarian & Liberty Rock</h4><p>Lose yourself in three floors of pre-1850 treasures, then browse the village's largest collection.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Around the Corner & More</h4><p>Creative Corner, NY Ephemera, Quarry Books, and More Good Books. Finish the set.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Evening</div><div class="itin-activity"><h4>Organize Your Haul</h4><p>Spread your finds on the bed, stack them up, take a photo. You've earned a quiet evening with a good book.</p></div></div>
+                </div>
+
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">3</div>
+                        <div><div class="itin-day-title">Day Three &mdash; The Catskills & Beyond</div><div class="itin-day-subtitle">Mountains, rivers, and farm country</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>Hike the Catskills</h4><p>Head to a nearby trail for a morning hike. Options range from gentle creek walks to mountain summit scrambles.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Midday</div><div class="itin-activity"><h4>Explore Surrounding Towns</h4><p>Visit Margaretville, Roxbury, or Stamford for antique shops, farm-to-table restaurants, and local color.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Return & Farewell</h4><p>One last pass through your favorite bookshop, a goodbye drink at the bar, and head home with a car full of books.</p></div></div>
+                    <div class="itin-tip"><span class="itin-tip-icon">&#128161;</span><p><strong>Pro tip:</strong> Three days is ideal for combining the book village with Catskill outdoor adventures. Plan around a weekend to catch all shops open.</p></div>
+                </div>
+            </div>
+
+            <!-- WEEK -->
+            <div class="tab-content" id="tab-week">
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">1</div>
+                        <div><div class="itin-day-title">Monday &mdash; Arrive & Decompress</div><div class="itin-day-subtitle">Leave the city behind</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Check In & Unwind</h4><p>Settle into your cabin, Airbnb, or Inn room. Walk the village, breathe the mountain air, and let the pace of rural life take over.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Evening</div><div class="itin-activity"><h4>Dinner & Early Rest</h4><p>Simple dinner, early bed. You have a whole week &mdash; no rush.</p></div></div>
+                </div>
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">2</div>
+                        <div><div class="itin-day-title">Tuesday &mdash; River & Reading Day</div><div class="itin-day-subtitle">Find your spot and read all day</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>West Branch of the Delaware</h4><p>Walk or drive to the river. Find a rock, set up a chair, and read with the sound of water as your soundtrack.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Village Wandering</h4><p>Explore Main Street at your own pace. Chat with locals. Discover what's around each corner.</p></div></div>
+                </div>
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">3</div>
+                        <div><div class="itin-day-title">Wednesday &mdash; Farm Country</div><div class="itin-day-subtitle">Explore the agricultural roots of Delaware County</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">All Day</div><div class="itin-activity"><h4>Farm Stands & Back Roads</h4><p>Drive the back roads of Delaware County. Visit farm stands, pick up local cheese, maple syrup, and produce. Stop for lunch in Margaretville or Andes.</p></div></div>
+                </div>
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">4</div>
+                        <div><div class="itin-day-title">Thursday &mdash; Catskill Adventure Day</div><div class="itin-day-subtitle">Mountains, swimming holes, and covered bridges</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>Hike a Catskill Peak</h4><p>Take on a proper mountain hike. Balsam Lake, Bearpen, or Vly &mdash; all reachable from Hobart.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Afternoon</div><div class="itin-activity"><h4>Swimming Holes & Waterfalls</h4><p>Cool off at a local swimming hole or seek out one of the area's hidden waterfalls.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Evening</div><div class="itin-activity"><h4>Drinks at The Inn Bar</h4><p>You've earned a cold one. Share trail stories with fellow visitors at the bar.</p></div></div>
+                </div>
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">5-6</div>
+                        <div><div class="itin-day-title">Friday &amp; Saturday &mdash; The Full Bookshop Experience</div><div class="itin-day-subtitle">All eight shops, no rushing</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Two Days</div><div class="itin-activity"><h4>Spend Two Full Days in the Shops</h4><p>With all shops open on Saturday, split your browsing across two days. Spend an hour in each store. Talk to the owners. Learn the stories behind the books and the buildings. This is what you came for.</p></div></div>
+                </div>
+                <div class="itin-day">
+                    <div class="itin-day-header">
+                        <div class="itin-day-num">7</div>
+                        <div><div class="itin-day-title">Sunday &mdash; Slow Farewell</div><div class="itin-day-subtitle">One last morning in the mountains</div></div>
+                    </div>
+                    <div class="itin-block"><div class="itin-time">Morning</div><div class="itin-activity"><h4>Final Walk & Favorite Shop</h4><p>Walk Main Street one more time. Pop into your favorite shop to say goodbye and grab that last book.</p></div></div>
+                    <div class="itin-block"><div class="itin-time">Midday</div><div class="itin-activity"><h4>Head Home</h4><p>Pack the car with books, memories, and mountain air. You'll be back &mdash; everyone comes back.</p></div></div>
+                    <div class="itin-tip"><span class="itin-tip-icon">&#128161;</span><p><strong>Pro tip:</strong> A full week lets you truly disconnect. Leave the laptop at home, bring a reading list, and let the village work its magic.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHERE TO STAY -->
+    <section class="stays-section">
+        <div class="stays-container">
+            <div class="stays-header">
+                <span class="label">Where to Stay</span>
+                <h2>Sleep Among the Stories</h2>
+                <p>From a room right on Main Street to secluded mountain cabins, there's a perfect base for every kind of visit.</p>
+            </div>
+
+            <!-- Featured: The Inn -->
+            <div class="stays-featured">
+                <img class="stays-featured-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&q=80" alt="Book Village Inn">
+                <div>
+                    <span class="tag">Our Pick &mdash; Right on Main Street</span>
+                    <h3>Book Village Inn</h3>
+                    <p>Five cozy rooms steps from every bookshop, plus a bar and kitchen downstairs. The only place to stay where you can roll out of bed and into a bookstore. A new bookshop and coffee bar opening inside soon.</p>
+                    <a href="https://www.bookvillageinn.com/" target="_blank" class="link">Book a Room at the Inn &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Airbnb Grid -->
+            <h3 style="font-size:1.3rem; margin-bottom:1.5rem; text-align:center;">Vacation Rentals Near the Village</h3>
+            <div class="stays-grid">
+                <div class="stay-listing">
+                    <span class="type">Chalet &bull; 22 Acres</span>
+                    <h3>Two Ponds Catskills</h3>
+                    <p>An all-season retreat on 22 acres with a spring-fed swimming pool. Peace and privacy in the Catskill Mountains.</p>
+                    <a href="https://www.airbnb.com/rooms/964451156983575882" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Farmhouse &bull; Riverside</span>
+                    <h3>The Hobart House</h3>
+                    <p>A charming farmhouse on the west branch of the Delaware River, about 3 hours from NYC. Classic Catskills character.</p>
+                    <a href="https://www.airbnb.com/rooms/52103886" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Cabin &bull; Secluded</span>
+                    <h3>Mountain Cabin on Cowan Mountain</h3>
+                    <p>A relaxing 2-bedroom cabin on a quiet, peaceful dead-end road just outside the village. Secluded but close to everything.</p>
+                    <a href="https://www.airbnb.com/rooms/44061475" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Cottage &bull; Riverside</span>
+                    <h3>Riverfront Cottage</h3>
+                    <p>A renovated farmhouse where you can hear the passing stream from every room. Two bedrooms, pure tranquility.</p>
+                    <a href="https://www.airbnb.com/rooms/52398062" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Historic &bull; Schoolhouse</span>
+                    <h3>19th-Century Schoolhouse Cabin</h3>
+                    <p>A lovingly restored schoolhouse turned cozy cabin. Trout fishing, hiking, and an EV charger. History meets modern comfort.</p>
+                    <a href="https://www.airbnb.com/rooms/1168507486312187319" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Cabin &bull; Mountain Views</span>
+                    <h3>Solitude Escape</h3>
+                    <p>Breathtaking mountain views, perfect for creating memories with friends, decompressing from the city, or a romantic escape.</p>
+                    <a href="https://www.airbnb.com/rooms/31532333" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Apartment &bull; In Village</span>
+                    <h3>Catskills Getaway Apartment</h3>
+                    <p>A full-kitchen apartment right in Hobart. Simple, comfortable, and walking distance to every bookshop.</p>
+                    <a href="https://www.airbnb.com/rooms/745673456432692459" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+                <div class="stay-listing">
+                    <span class="type">Glamping &bull; Creek-side</span>
+                    <h3>A-Frame on Charlotte Creek</h3>
+                    <p>A modern tiny A-frame on the creek with a giant moon light over the bed. Romantic, unique, and unforgettable.</p>
+                    <a href="https://www.airbnb.com/hobart-ny/stays" target="_blank">View on Airbnb &rarr;</a>
+                </div>
+            </div>
+
+            <p style="text-align:center; margin-top:2rem; font-family:'Cormorant Garamond', serif; font-size:1.1rem; color:var(--warm-gray);">
+                Browse all available stays on <a href="https://www.airbnb.com/hobart-ny/stays" target="_blank" style="color:var(--deep-green); text-decoration:underline;">Airbnb</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 <a href="index.html">Hobart Book Village</a>. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+            });
+        });
+        // Mobile menu
+        document.getElementById('mobileToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
+    </script>
+</body>
+</html>
