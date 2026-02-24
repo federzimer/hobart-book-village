@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobart Book Village — The Catskills' Literary Heart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --cream: #FAF6F1;
+            --warm-white: #FFFDF9;
+            --parchment: #F0E8DC;
+            --leather: #8B6914;
+            --deep-green: #2D4A3E;
+            --forest: #1A3329;
+            --ink: #1C1917;
+            --warm-gray: #78716C;
+            --light-gray: #D6D3D1;
+            --gold: #D4A843;
+            --sage: #87A889;
+            --soft-shadow: 0 4px 30px rgba(28, 25, 23, 0.08);
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--cream); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-weight: 500; line-height: 1.2; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: all 0.4s ease; }
+        nav.transparent { background: transparent; }
+        nav.scrolled { background: rgba(250, 246, 241, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 1px 20px rgba(28,25,23,0.08); }
+        .nav-inner { max-width: 1300px; margin: 0 auto; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; transition: color 0.3s; display: flex; align-items: center; gap: 0.6rem; }
+        nav.transparent .nav-logo { color: var(--warm-white); }
+        nav.scrolled .nav-logo { color: var(--ink); }
+        .nav-logo-img { height: 42px; width: 42px; border-radius: 50%; object-fit: contain; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.15); flex-shrink: 0; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none; color: var(--ink); transition: color 0.3s; position: relative; }
+        nav.transparent .nav-links a { color: rgba(255,253,249,0.85); }
+        nav.transparent .nav-links a:hover { color: var(--warm-white); }
+        nav.scrolled .nav-links a { color: var(--warm-gray); }
+        nav.scrolled .nav-links a:hover { color: var(--ink); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--deep-green) !important; color: var(--warm-white) !important; padding: 0.6rem 1.5rem !important; border-radius: 4px; transition: all 0.3s !important; }
+        .nav-cta:hover { background: var(--forest) !important; transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; width: 28px; height: 20px; position: relative; }
+        .mobile-toggle span { display: block; width: 100%; height: 2px; background: var(--ink); position: absolute; left: 0; transition: all 0.3s; }
+        nav.transparent .mobile-toggle span { background: var(--warm-white); }
+        .mobile-toggle span:nth-child(1) { top: 0; }
+        .mobile-toggle span:nth-child(2) { top: 9px; }
+        .mobile-toggle span:nth-child(3) { bottom: 0; }
+
+        /* HERO */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--forest); }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,51,41,0.3) 0%, rgba(26,51,41,0.5) 40%, rgba(26,51,41,0.75) 100%), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&q=80') center/cover no-repeat; transform: scale(1.05); animation: heroZoom 20s ease-in-out infinite alternate; }
+        @keyframes heroZoom { 0% { transform: scale(1.05); } 100% { transform: scale(1.12); } }
+        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 2rem; }
+        .hero-logo { width: 130px; height: 130px; border-radius: 50%; object-fit: contain; background: white; margin-bottom: 1.5rem; box-shadow: 0 4px 25px rgba(0,0,0,0.3); }
+        .hero-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 2rem; padding: 0.5rem 1.5rem; border: 1px solid rgba(212,168,67,0.4); border-radius: 2px; }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); color: var(--warm-white); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(28,25,23,0.15); }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.15rem, 2vw, 1.45rem); color: rgba(255,253,249,0.8); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 300; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.2rem; font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--deep-green); color: var(--warm-white); }
+        .btn-primary:hover { background: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(45,74,62,0.3); }
+        .btn-outline { background: transparent; color: var(--warm-white); border: 1.5px solid rgba(255,253,249,0.4); }
+        .btn-outline:hover { border-color: var(--warm-white); background: rgba(255,253,249,0.08); }
+        .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,253,249,0.5); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Inter', sans-serif; text-decoration: none; }
+        .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,253,249,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%, 100% { opacity: 0.5; height: 40px; } 50% { opacity: 1; height: 50px; } }
+
+        /* SECTIONS */
+        section { padding: 6rem 2rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.25em; color: var(--leather); margin-bottom: 1rem; display: block; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--ink); margin-bottom: 1.2rem; font-weight: 400; }
+        .section-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--warm-gray); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+        /* INTRO */
+        .intro { background: var(--warm-white); padding: 5rem 2rem; }
+        .intro-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; text-align: center; }
+        .intro-stat .number { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 400; color: var(--deep-green); line-height: 1; margin-bottom: 0.5rem; }
+        .intro-stat .label { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--warm-gray); }
+        .intro-divider { width: 40px; height: 1.5px; background: var(--gold); margin: 0.8rem auto; }
+
+        /* BOOKSTORES */
+        .bookstores { background: var(--cream); }
+        .bookstore-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+        .bookstore-card { background: var(--warm-white); border-radius: 8px; overflow: hidden; box-shadow: var(--soft-shadow); transition: all 0.4s ease; cursor: pointer; }
+        .bookstore-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(28,25,23,0.12); }
+        .bookstore-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .bookstore-info { padding: 1.8rem; }
+        .bookstore-tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--leather); background: var(--parchment); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 0.8rem; }
+        .bookstore-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--ink); }
+        .bookstore-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--warm-gray); line-height: 1.7; margin-bottom: 1rem; }
+        .bookstore-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: var(--warm-gray); font-family: 'Inter', sans-serif; }
+        .bookstore-meta span { display: flex; align-items: center; gap: 0.4rem; }
+        .bookstore-link { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--deep-green); text-decoration: none; margin-top: 0.8rem; transition: color 0.3s; }
+        .bookstore-link:hover { color: var(--gold); }
+        .bookstore-link::after { content: ' \2192'; }
+
+        /* EVENTS */
+        .events { background: var(--forest); color: var(--warm-white); }
+        .events .section-label { color: var(--gold); }
+        .events .section-title { color: var(--warm-white); }
+        .events .section-desc { color: rgba(255,253,249,0.65); }
+        .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .event-card { display: flex; gap: 1.5rem; padding: 2rem; background: rgba(255,253,249,0.05); border: 1px solid rgba(255,253,249,0.08); border-radius: 8px; transition: all 0.3s ease; }
+        .event-card:hover { background: rgba(255,253,249,0.08); border-color: rgba(212,168,67,0.3); }
+        .event-date { flex-shrink: 0; text-align: center; width: 70px; }
+        .event-date .month { font-family: 'Inter', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; }
+        .event-date .day { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; line-height: 1.1; color: var(--warm-white); }
+        .event-details h3 { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--warm-white); }
+        .event-details p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: rgba(255,253,249,0.6); line-height: 1.6; }
+        .event-type { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sage); margin-bottom: 0.4rem; }
+
+        /* STAY & DINE */
+        .stay-dine { background: var(--warm-white); }
+        .stay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .stay-card { position: relative; border-radius: 8px; overflow: hidden; min-height: 500px; display: flex; align-items: flex-end; cursor: pointer; }
+        .stay-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+        .stay-card:hover .stay-card-bg { transform: scale(1.05); }
+        .stay-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,25,23,0.85) 0%, rgba(28,25,23,0.2) 60%, transparent 100%); }
+        .stay-card-content { position: relative; z-index: 2; padding: 2.5rem; width: 100%; }
+        .stay-card-content .tag { font-family: 'Inter', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.8rem; display: block; }
+        .stay-card-content h3 { font-size: 1.8rem; color: var(--warm-white); margin-bottom: 0.6rem; font-weight: 500; }
+        .stay-card-content p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: rgba(255,253,249,0.7); line-height: 1.7; margin-bottom: 1.2rem; }
+        .stay-card-content .link { font-family: 'Inter', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.3s; }
+        .stay-card-content .link:hover { gap: 0.8rem; }
+
+        /* VISIT */
+        .visit { background: var(--cream); }
+        .visit-features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 4rem; }
+        .visit-feature { text-align: center; padding: 2.5rem 1.5rem; background: var(--warm-white); border-radius: 8px; box-shadow: var(--soft-shadow); transition: all 0.3s ease; }
+        .visit-feature:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(28,25,23,0.1); }
+        .visit-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+        .visit-feature h3 { font-size: 1.15rem; margin-bottom: 0.6rem; font-weight: 500; }
+        .visit-feature p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--warm-gray); line-height: 1.6; }
+        .visit-callout { background: var(--parchment); border-radius: 8px; padding: 3.5rem; display: flex; align-items: center; gap: 3rem; }
+        .visit-callout-text { flex: 1; }
+        .visit-callout h3 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .visit-callout p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-gray); line-height: 1.7; margin-bottom: 1.5rem; }
+        .visit-callout-map { flex: 1; height: 300px; border-radius: 8px; overflow: hidden; }
+        .visit-callout-map iframe { width: 100%; height: 100%; border: 0; }
+
+        /* SOCIAL */
+        .social { background: var(--warm-white); text-align: center; }
+        .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; margin-top: 3rem; }
+        .insta-item { aspect-ratio: 1; overflow: hidden; border-radius: 4px; position: relative; cursor: pointer; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .insta-item:hover img { transform: scale(1.1); }
+        .insta-item::after { content: ''; position: absolute; inset: 0; background: rgba(45,74,62,0); transition: background 0.3s; }
+        .insta-item:hover::after { background: rgba(45,74,62,0.3); }
+
+        /* SOCIAL ACCOUNTS */
+        .social-accounts { background: var(--cream); padding: 2rem 2rem 0; }
+        .social-accounts-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .social-account { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; background: var(--warm-white); border-radius: 6px; text-decoration: none; color: var(--ink); transition: all 0.3s; border: 1px solid transparent; }
+        .social-account:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--soft-shadow); }
+        .social-account .platform { font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--leather); }
+        .social-account .handle { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; }
+        .social-account .desc { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--warm-gray); }
+        .social-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: var(--parchment); }
+
+        /* NEWSLETTER */
+        .newsletter { background: var(--parchment); padding: 5rem 2rem; }
+        .newsletter-inner { max-width: 650px; margin: 0 auto; text-align: center; }
+        .newsletter h2 { font-size: 2rem; margin-bottom: 0.8rem; }
+        .newsletter p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--warm-gray); margin-bottom: 2rem; }
+        .newsletter-form { display: flex; gap: 0.8rem; max-width: 500px; margin: 0 auto; }
+        .newsletter-form input { flex: 1; padding: 1rem 1.3rem; font-family: 'Inter', sans-serif; font-size: 0.88rem; border: 1.5px solid var(--light-gray); border-radius: 4px; background: var(--warm-white); color: var(--ink); outline: none; transition: border-color 0.3s; }
+        .newsletter-form input:focus { border-color: var(--deep-green); }
+        .newsletter-form input::placeholder { color: var(--light-gray); }
+        .newsletter-form button { padding: 1rem 2rem; background: var(--deep-green); color: var(--warm-white); border: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s; white-space: nowrap; }
+        .newsletter-form button:hover { background: var(--forest); }
+
+        /* HISTORY */
+        .history { background: var(--parchment); }
+        .history-content { max-width: 900px; margin: 0 auto; }
+        .history-timeline { position: relative; padding-left: 3rem; }
+        .history-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--leather), var(--deep-green)); }
+        .timeline-item { position: relative; margin-bottom: 3rem; padding-bottom: 1rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -3rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 3px solid var(--parchment); box-shadow: 0 0 0 2px var(--gold); z-index: 1; }
+        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--deep-green); margin-bottom: 0.5rem; font-weight: 500; }
+        .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.5rem; font-weight: 500; }
+        .timeline-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-gray); line-height: 1.8; }
+        .history-quote { background: var(--warm-white); border-radius: 8px; padding: 2.5rem 3rem; margin: 3rem 0; position: relative; box-shadow: var(--soft-shadow); }
+        .history-quote::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--gold); position: absolute; top: -0.5rem; left: 1.5rem; line-height: 1; opacity: 0.5; }
+        .history-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--ink); line-height: 1.7; padding-left: 1rem; }
+        .history-quote .attribution { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--warm-gray); margin-top: 1rem; padding-left: 1rem; font-style: normal; }
+
+        /* FOOTER */
+        footer { background: var(--ink); color: rgba(255,253,249,0.5); padding: 5rem 2rem 2.5rem; }
+        .footer-grid { max-width: 1200px; margin: 0 auto 4rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
+        .footer-brand-logo { display: flex; align-items: center; gap: 0.8rem; }
+        .footer-brand-logo img { width: 50px; height: 50px; border-radius: 50%; object-fit: contain; background: white; }
+        .footer-brand h3 { font-size: 1.5rem; color: var(--warm-white); }
+        .footer-brand p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.7; max-width: 300px; }
+        .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,253,249,0.7); margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.6rem; }
+        .footer-col a { color: rgba(255,253,249,0.45); text-decoration: none; transition: color 0.3s; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2.5rem; border-top: 1px solid rgba(255,253,249,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; }
+        .footer-social { display: flex; gap: 1.5rem; }
+        .footer-social a { color: rgba(255,253,249,0.4); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
+        .footer-social a:hover { color: var(--gold); }
+
+        /* ANIMATIONS */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .events-grid { grid-template-columns: 1fr; }
+            .stay-grid { grid-template-columns: 1fr; }
+            .visit-features { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        }
+        @media (max-width: 768px) {
+            section { padding: 4rem 1.5rem; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .bookstore-grid { grid-template-columns: 1fr; }
+            .visit-features { grid-template-columns: 1fr; }
+            .visit-callout { flex-direction: column; }
+            .insta-grid { grid-template-columns: repeat(3, 1fr); }
+            .newsletter-form { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .stay-card { min-height: 400px; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,241,0.98); backdrop-filter: blur(20px); padding: 2rem; gap: 1.5rem; }
+            .nav-links.open a { color: var(--ink) !important; }
+        }
+        @media (max-width: 480px) { .hero h1 { font-size: 2.2rem; } .hero-sub { font-size: 1.05rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="transparent" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="logo-v2.png" alt="Hobart Book Village" class="nav-logo-img">
+                Hobart Book Village
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#bookstores">Bookstores</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#stay">Stay & Dine</a></li>
+                <li><a href="#visit">Visit</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="itineraries.html">Itineraries</a></li>
+                <li><a href="#stay" class="nav-cta">Plan Your Trip</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <img src="logo-v2.png" alt="Hobart Book Village Logo" class="hero-logo">
+            <br>
+            <span class="hero-badge">Est. 2005 &mdash; Catskill Mountains, NY</span>
+            <h1>A Village of <em>Books</em><br>in the Mountains</h1>
+            <p class="hero-sub">Seven independent bookshops &mdash; and counting &mdash; on one Main Street. A village of about 400 in the Northern Catskills where every corner holds a story worth finding.</p>
+            <div class="hero-buttons">
+                <a href="#bookstores" class="btn btn-primary">Explore the Shops</a>
+                <a href="#stay" class="btn btn-outline">Plan Your Visit</a>
+            </div>
+        </div>
+        <a href="#intro" class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></a>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro" id="intro">
+        <div class="intro-grid fade-up">
+            <div class="intro-stat"><div class="number">7+</div><div class="intro-divider"></div><div class="label">Independent Bookshops</div></div>
+            <div class="intro-stat"><div class="number">400</div><div class="intro-divider"></div><div class="label">Village Residents</div></div>
+            <div class="intro-stat"><div class="number">1</div><div class="intro-divider"></div><div class="label">Main Street to Explore</div></div>
+        </div>
+    </section>
+
+    <!-- BOOKSTORES -->
+    <section class="bookstores" id="bookstores">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">The Shops</span>
+                <h2 class="section-title">Seven Shops &amp; Growing,<br>Infinite Stories</h2>
+                <p class="section-desc">Each shop on Main Street has its own personality, specialty, and loyal following. From 17th-century antiquarian volumes to mysteries on the honor system, there's a shelf waiting for you.</p>
+            </div>
+            <div class="bookstore-grid">
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1526243741027-444d633d7365?w=600&q=80" alt="Blenheim Hill Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Fiction &bull; Poetry &bull; Women's Studies</span>
+                        <h3 class="bookstore-name">Blenheim Hill Books</h3>
+                        <p class="bookstore-desc">Run by retired professors Barbara Balliet &amp; Cheryl Clarke since 2009. A cozy, welcoming shop known for its poetry, women's history, fiction, children's books, and nature writing. Home of the Hobart Festival of Women Writers.</p>
+                        <div class="bookstore-meta"><span>&#128205; 698 Main St</span><span>&#128214; Used</span><span>&#128344; Weekends 10&ndash;5</span></div>
+                        <a href="https://www.blenheimhillbooks.com/" target="_blank" class="bookstore-link">Visit Website</a>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&q=80" alt="Wm. H. Adams Antiquarian">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Antiquarian &bull; Pre-1850 &bull; Rare</span>
+                        <h3 class="bookstore-name">Wm. H. Adams' Antiquarian Books</h3>
+                        <p class="bookstore-desc">Three floors of 17th&ndash;20th century texts &mdash; Theology, Classics in Greek &amp; Latin, Art, Science, Natural History, and signed editions. Bill &amp; Diana Adams always have tea, cheese, and sherry waiting for visitors.</p>
+                        <div class="bookstore-meta"><span>&#128205; 602 Main St</span><span>&#128214; Rare &amp; Antique</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                        <a href="https://whabooks.com/" target="_blank" class="bookstore-link">Visit Website</a>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80" alt="Liberty Rock Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">General &bull; 85,000+ Volumes</span>
+                        <h3 class="bookstore-name">Liberty Rock Books</h3>
+                        <p class="bookstore-desc">The village's largest store &mdash; 5,000 sq ft housing up to 85,000 volumes spanning 300 years. Owned by John &amp; Jim Mahoney and Tom Liotta. Also hosts author readings and book-signings. Est. 1976 in Rockland County, now proudly Hobart.</p>
+                        <div class="bookstore-meta"><span>&#128205; 678 Main St</span><span>&#128214; Used &amp; Vintage</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&q=80" alt="Creative Corner Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Cookbooks &bull; Crafts &bull; DIY</span>
+                        <h3 class="bookstore-name">Creative Corner Books</h3>
+                        <p class="bookstore-desc">Opened by Kathy &amp; George Duyer in 2016. New, used, and vintage cookbooks &amp; craft books plus Kathy's Vintage Kitchen, local pottery, handmade needlecrafts, honey, jam, and gift items by local artisans.</p>
+                        <div class="bookstore-meta"><span>&#128205; 607 Main St</span><span>&#128214; New &amp; Used</span><span>&#128344; Wed&ndash;Sun 11&ndash;5</span></div>
+                        <a href="http://www.creativecornerbooks.com/" target="_blank" class="bookstore-link">Visit Website</a>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Quarry Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Mystery &bull; Sci-Fi</span>
+                        <h3 class="bookstore-name">Quarry Books</h3>
+                        <p class="bookstore-desc">Founded by Don Dales himself in the oldest foundation in Hobart. Specializing in mysteries and science fiction, this charming shop operates on the honor system &mdash; cash or check, trust-based.</p>
+                        <div class="bookstore-meta"><span>&#128205; 645 Main St</span><span>&#128214; Honor System</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80" alt="NY Books & Ephemera">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">New York State &bull; History &bull; Local</span>
+                        <h3 class="bookstore-name">New York Books &amp; Ephemera</h3>
+                        <p class="bookstore-desc">All things New York &mdash; history, geography, travel, memoir, food, architecture, arts, nature, plus fiction by NY authors. Also stocks local farm products and handcrafted items. Opened 2020 by Kathy &amp; George Duyer.</p>
+                        <div class="bookstore-meta"><span>&#128205; 615 Main St</span><span>&#128214; Regional Focus</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&q=80" alt="More Good Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Trains &bull; Ships &bull; Sports &bull; Hobbies</span>
+                        <h3 class="bookstore-name">More Good Books</h3>
+                        <p class="bookstore-desc">A niche bookshop specializing in railroads, ships &amp; boats, automobiles, games, sports, hobbies, and pets. Located in the historic Hobart Inn building alongside The Book Nook &mdash; a free children's lending library.</p>
+                        <div class="bookstore-meta"><span>&#128205; 645 Main St</span><span>&#128214; Specialty</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up" style="border: 2px dashed var(--gold);">
+                    <div style="height:220px; background: linear-gradient(135deg, var(--parchment), var(--cream)); display:flex; align-items:center; justify-content:center;">
+                        <span style="font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--leather);">Coming Soon</span>
+                    </div>
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag" style="background:var(--gold); color:var(--warm-white);">Opening 2026</span>
+                        <h3 class="bookstore-name">The Inn Bookshop &amp; Coffee</h3>
+                        <p class="bookstore-desc">A new chapter for the Book Village Inn &mdash; browse shelves with a latte in hand. Books, coffee, and conversation under one roof.</p>
+                        <div class="bookstore-meta"><span>&#128205; 760 Main St</span><span>&#9749; Books + Coffee</span><span>&#128344; Daily hours TBA</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="events" id="events">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">What's Happening</span>
+                <h2 class="section-title">Events &amp; Gatherings</h2>
+                <p class="section-desc">From author readings to seasonal festivals, there's always a reason to visit the village.</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">May</span><span class="day">23</span></div>
+                    <div class="event-details"><span class="event-type">Annual Festival</span><h3>Memorial Day Weekend Sale</h3><p>The village's legendary semi-annual sale. Every shop offers special deals, and collectors travel from across the Northeast.</p></div>
+                </div>
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">Jun</span><span class="day">14</span></div>
+                    <div class="event-details"><span class="event-type">Author Event</span><h3>Summer Author Reading Series</h3><p>Local and visiting authors share their latest work in an intimate village setting. Wine and conversation to follow.</p></div>
+                </div>
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">Aug</span><span class="day">8</span></div>
+                    <div class="event-details"><span class="event-type">Literary Festival</span><h3>Festival of Women Writers</h3><p>Celebrating women's voices in literature with panels, readings, workshops, and community discussions throughout the village.</p></div>
+                </div>
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">Nov</span><span class="day">27</span></div>
+                    <div class="event-details"><span class="event-type">Annual Festival</span><h3>Thanksgiving Weekend Sale</h3><p>The second great semi-annual sale. Skip the malls and spend the holiday weekend browsing books in the mountains.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAY & DINE -->
+    <section class="stay-dine" id="stay">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Stay & Dine</span>
+                <h2 class="section-title">Rest, Read, &amp; Refuel</h2>
+                <p class="section-desc">Make it a weekend. The Book Village Inn offers rooms, a bar, and soon &mdash; a bookshop and coffee bar right inside.</p>
+            </div>
+            <div class="stay-grid">
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">Boutique Hotel &bull; Est. 1890</span>
+                        <h3>Book Village Inn</h3>
+                        <p>A beautifully preserved boutique hotel at 760 Main Street, dating back to 1890. Pet-friendly rooms with WiFi, A/C, firepit, and garden. Rated 9.0 "Wonderful" on Expedia. Eight bookstores right outside your door.</p>
+                        <a href="https://www.bookvillageinn.com/" target="_blank" class="link">Book a Room &rarr;</a>
+                    </div>
+                </div>
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">Thu&ndash;Sun &bull; 4pm&ndash;10pm</span>
+                        <h3>The Inn Bar &amp; Restaurant</h3>
+                        <p>Cozy meals, local beer, and artisanal cocktails. Whether you're staying at the Inn or just passing through, the bar is the village's gathering spot for stories and good company.</p>
+                        <a href="https://www.bookvillageinn.com/" target="_blank" class="link">See the Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">Coming Soon</span>
+                        <h3>The Inn Bookshop &amp; Coffee</h3>
+                        <p>Opening in the Inn's lobby &mdash; browse curated shelves with a fresh pour-over in hand. Books, coffee, and good conversation.</p>
+                        <a href="https://www.bookvillageinn.com/" target="_blank" class="link">Stay Tuned &rarr;</a>
+                    </div>
+                </div>
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">The Region</span>
+                        <h3>Catskill Mountain Country</h3>
+                        <p>Hiking, swimming holes, farm stands, and winding country roads. The Northern Catskills are your backyard here.</p>
+                        <a href="#visit" class="link">Explore the Area &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="visit" id="visit">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Plan Your Trip</span>
+                <h2 class="section-title">Visit Hobart</h2>
+                <p class="section-desc">A tiny village with an outsized personality, tucked into the rolling hills of the Northern Catskills.</p>
+            </div>
+            <div class="visit-features fade-up">
+                <div class="visit-feature"><span class="visit-icon">&#128218;</span><h3>Browse All Day</h3><p>Seven bookshops within walking distance on Main Street. Open weekends 11&ndash;5, with two huge semi-annual sales on Memorial Day and Thanksgiving weekends.</p></div>
+                <div class="visit-feature"><span class="visit-icon">&#127956;</span><h3>Hike & Explore</h3><p>Catskill trails, covered bridges, swimming holes, and farm country all nearby.</p></div>
+                <div class="visit-feature"><span class="visit-icon">&#127860;</span><h3>Eat & Drink</h3><p>Local eateries, farm-to-table dining, craft beverages, and the Inn's own bar.</p></div>
+                <div class="visit-feature"><span class="visit-icon">&#127769;</span><h3>Stay the Night</h3><p>Book a room at the Inn and wake up to mountain air and a village full of stories.</p></div>
+            </div>
+            <div class="visit-callout fade-up">
+                <div class="visit-callout-text">
+                    <h3>Getting Here</h3>
+                    <p>Hobart is on State Route 10 in Delaware County, between Bloomville and Stamford in the Great Western Catskills. About 3 hours from NYC and 45 minutes from Oneonta. The entire village is walkable &mdash; park once and explore on foot.</p>
+                    <a href="https://maps.google.com/?q=Hobart+NY" target="_blank" class="btn btn-primary" style="display:inline-flex;">Get Directions &rarr;</a>
+                </div>
+                <div class="visit-callout-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5938.536!2d-74.668!3d42.3725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89dce7d2a1c2d8ab%3A0x4e8df0d3cbb92c5e!2sHobart%2C+NY+13788!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="history" id="history">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Our Story</span>
+                <h2 class="section-title">A Village Reborn<br>Through Books</h2>
+                <p class="section-desc">From indigenous hunting grounds to a literary destination &mdash; the story of Hobart is one of reinvention, community, and the enduring power of a good book.</p>
+            </div>
+
+            <div class="history-content">
+                <div class="history-timeline fade-up">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Pre-1763</div>
+                        <div class="timeline-title">Ancient Roots</div>
+                        <div class="timeline-text">Long before European settlement, the land around present-day Hobart served as hunting grounds for the Lenape and Mohawk peoples of the Northeastern Woodlands.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1784</div>
+                        <div class="timeline-title">Settlers Arrive</div>
+                        <div class="timeline-text">After the American Revolution, settlers &mdash; many from Connecticut and New England &mdash; moved into the area, building farms, mills, and inns. The village was originally known as Waterville.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1828</div>
+                        <div class="timeline-title">A New Name</div>
+                        <div class="timeline-text">The U.S. Postal Service requested the village rename itself to avoid confusion with the more populated Waterville, New York. The community became Hobart.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1884</div>
+                        <div class="timeline-title">The Railroad Arrives</div>
+                        <div class="timeline-text">A railroad line connected to the village, fueling growth through agriculture and commerce. Hobart thrived as a small Catskill Mountain community.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Late 1900s</div>
+                        <div class="timeline-title">A Village in Decline</div>
+                        <div class="timeline-text">Like much of rural upstate New York, Hobart saw businesses close, revenue decline, and population shrink through the second half of the twentieth century. Main Street grew quiet.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Early 2000s</div>
+                        <div class="timeline-title">Don Dales Sees a Vision</div>
+                        <div class="timeline-text">Don Dales, who grew up in nearby Stamford just three miles away, came to Hobart and saw a Main Street so empty you could imagine tumbleweeds blowing through. He bought up vacant buildings along Main Street with a bold idea: fill them with booksellers.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2001</div>
+                        <div class="timeline-title">The First Booksellers Arrive</div>
+                        <div class="timeline-text">Bill &amp; Diana Adams &mdash; retired and dreaming of becoming booksellers &mdash; drove through Hobart from Manhattan, saw a corner store for rent, and took it on the spot. They began moving in books Bill already owned, establishing what would become Wm. H. Adams' Antiquarian Books.</div>
+                    </div>
+                </div>
+
+                <div class="history-quote fade-up">
+                    <p>Inspired by the legendary Book Village of Hay-on-Wye in Wales &mdash; where a single visionary turned a small town into a destination of nearly 25 bookstores &mdash; Don Dales began welcoming fellow entrepreneurs to open shops in his empty buildings, dreaming of a literature lover's enclave in the Catskills.</p>
+                    <div class="attribution">&mdash; The founding idea behind Hobart Book Village</div>
+                </div>
+
+                <div class="history-timeline fade-up">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2005</div>
+                        <div class="timeline-title">Hobart Book Village Is Born</div>
+                        <div class="timeline-text">Don Dales officially established Hobart Book Village &mdash; the only book village east of the Mississippi. By this point there were four bookstores, and the vision was taking shape. Dales welcomed more entrepreneurs to open shops alongside the growing literary community.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2009</div>
+                        <div class="timeline-title">Blenheim Hill Books Opens</div>
+                        <div class="timeline-text">Retired professors Barbara Balliet &amp; Cheryl Clarke had bought a house near the village in 2005. After years of browsing and befriending booksellers, they jumped into the business themselves &mdash; opening Blenheim Hill Books and later co-founding the Hobart Festival of Women Writers.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2016&ndash;2020</div>
+                        <div class="timeline-title">New Shops &amp; New Energy</div>
+                        <div class="timeline-text">Kathy &amp; George Duyer opened Creative Corner Books in 2016, followed by New York Books &amp; Ephemera in 2020. Liberty Rock Books &mdash; established in 1976 in Rockland County &mdash; relocated to Hobart, bringing 85,000 volumes. The village grew to seven independent shops.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Present</div>
+                        <div class="timeline-title">The Book Village Inn &amp; Beyond</div>
+                        <div class="timeline-text">The Book Village Inn &amp; Bar opened its doors at 760 Main Street, adding cozy accommodations and a gathering spot for visitors. Annual events like the Memorial Day and Thanksgiving Weekend Sales draw collectors from across the Northeast.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-title">The Next Chapter</div>
+                        <div class="timeline-text">A new bookshop and coffee bar is opening inside the Inn, and two existing shops are changing hands &mdash; proving that Don Dales' belief was right all along: books can bring a community back to life.</div>
+                    </div>
+                </div>
+
+                <div class="history-quote fade-up">
+                    <p>Dales didn't start Hobart Book Village to get rich. He started it to make a difference and build something that could last &mdash; a place that could help a community, create experiences, and bring people together.</p>
+                    <div class="attribution">&mdash; On Don Dales' legacy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL -->
+    <section class="social">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">@hobartbookvillageny</span>
+                <h2 class="section-title">From the Village</h2>
+                <p class="section-desc">Follow along for bookshop finds, mountain views, and village life.<br><a href="https://www.instagram.com/hobartbookvillageny/" target="_blank" style="color:var(--deep-green); text-decoration:none; font-family:'Inter',sans-serif; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em;">Follow on Instagram &rarr;</a></p>
+            </div>
+            <div class="insta-grid fade-up">
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80" alt="Books"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1519682577862-22b62b24e493?w=400&q=80" alt="Mountain views"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&q=80" alt="Bookshop"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80" alt="Cozy reading"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Catskills"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&q=80" alt="Book stack"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL ACCOUNTS -->
+    <section class="social-accounts">
+        <div class="section-container">
+            <div class="section-header fade-up" style="margin-bottom:2rem;">
+                <span class="section-label">Follow Us</span>
+                <h2 class="section-title" style="font-size:1.8rem;">Village Social Accounts</h2>
+            </div>
+            <div class="social-accounts-grid fade-up">
+                <a href="https://www.instagram.com/hobartbookvillageny/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@hobartbookvillageny</div><div class="desc">The Book Village</div></div>
+                </a>
+                <a href="https://www.instagram.com/bookvillageinn/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@bookvillageinn</div><div class="desc">The Inn &amp; Bar</div></div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobart Book Village — The Catskills' Literary Heart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --cream: #FAF6F1;
+            --warm-white: #FFFDF9;
+            --parchment: #F0E8DC;
+            --leather: #8B6914;
+            --deep-green: #2D4A3E;
+            --forest: #1A3329;
+            --ink: #1C1917;
+            --warm-gray: #78716C;
+            --light-gray: #D6D3D1;
+            --gold: #D4A843;
+            --sage: #87A889;
+            --soft-shadow: 0 4px 30px rgba(28, 25, 23, 0.08);
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--cream); color: var(--ink); line-height: 1.7; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', 'Cormorant Garamond', Georgia, serif; font-weight: 500; line-height: 1.2; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; transition: all 0.4s ease; }
+        nav.transparent { background: transparent; }
+        nav.scrolled { background: rgba(250, 246, 241, 0.95); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 1px 20px rgba(28,25,23,0.08); }
+        .nav-inner { max-width: 1300px; margin: 0 auto; padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: -0.02em; transition: color 0.3s; display: flex; align-items: center; gap: 0.6rem; }
+        nav.transparent .nav-logo { color: var(--warm-white); }
+        nav.scrolled .nav-logo { color: var(--ink); }
+        .nav-logo-img { height: 42px; width: 42px; border-radius: 50%; object-fit: contain; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.15); flex-shrink: 0; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none; color: var(--ink); transition: color 0.3s; position: relative; }
+        nav.transparent .nav-links a { color: rgba(255,253,249,0.85); }
+        nav.transparent .nav-links a:hover { color: var(--warm-white); }
+        nav.scrolled .nav-links a { color: var(--warm-gray); }
+        nav.scrolled .nav-links a:hover { color: var(--ink); }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; background: var(--gold); transition: width 0.3s ease; }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta { background: var(--deep-green) !important; color: var(--warm-white) !important; padding: 0.6rem 1.5rem !important; border-radius: 4px; transition: all 0.3s !important; }
+        .nav-cta:hover { background: var(--forest) !important; transform: translateY(-1px); }
+        .nav-cta::after { display: none !important; }
+        .mobile-toggle { display: none; background: none; border: none; cursor: pointer; width: 28px; height: 20px; position: relative; }
+        .mobile-toggle span { display: block; width: 100%; height: 2px; background: var(--ink); position: absolute; left: 0; transition: all 0.3s; }
+        nav.transparent .mobile-toggle span { background: var(--warm-white); }
+        .mobile-toggle span:nth-child(1) { top: 0; }
+        .mobile-toggle span:nth-child(2) { top: 9px; }
+        .mobile-toggle span:nth-child(3) { bottom: 0; }
+
+        /* HERO */
+        .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--forest); }
+        .hero-bg { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,51,41,0.3) 0%, rgba(26,51,41,0.5) 40%, rgba(26,51,41,0.75) 100%), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1920&q=80') center/cover no-repeat; transform: scale(1.05); animation: heroZoom 20s ease-in-out infinite alternate; }
+        @keyframes heroZoom { 0% { transform: scale(1.05); } 100% { transform: scale(1.12); } }
+        .hero-content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 2rem; }
+        .hero-logo { width: 130px; height: 130px; border-radius: 50%; object-fit: contain; background: white; margin-bottom: 1.5rem; box-shadow: 0 4px 25px rgba(0,0,0,0.3); }
+        .hero-badge { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.25em; color: var(--gold); margin-bottom: 2rem; padding: 0.5rem 1.5rem; border: 1px solid rgba(212,168,67,0.4); border-radius: 2px; }
+        .hero h1 { font-size: clamp(2.8rem, 6vw, 5rem); color: var(--warm-white); margin-bottom: 1.5rem; font-weight: 400; letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(28,25,23,0.15); }
+        .hero h1 em { font-style: italic; color: var(--gold); }
+        .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.15rem, 2vw, 1.45rem); color: rgba(255,253,249,0.8); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.8; font-weight: 300; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2.2rem; font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; text-decoration: none; border-radius: 4px; transition: all 0.3s ease; cursor: pointer; border: none; }
+        .btn-primary { background: var(--deep-green); color: var(--warm-white); }
+        .btn-primary:hover { background: var(--forest); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(45,74,62,0.3); }
+        .btn-outline { background: transparent; color: var(--warm-white); border: 1.5px solid rgba(255,253,249,0.4); }
+        .btn-outline:hover { border-color: var(--warm-white); background: rgba(255,253,249,0.08); }
+        .hero-scroll { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255,253,249,0.5); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Inter', sans-serif; text-decoration: none; }
+        .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,253,249,0.5), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%, 100% { opacity: 0.5; height: 40px; } 50% { opacity: 1; height: 50px; } }
+
+        /* SECTIONS */
+        section { padding: 6rem 2rem; }
+        .section-container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+        .section-label { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.25em; color: var(--leather); margin-bottom: 1rem; display: block; }
+        .section-title { font-size: clamp(2rem, 4vw, 3rem); color: var(--ink); margin-bottom: 1.2rem; font-weight: 400; }
+        .section-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--warm-gray); max-width: 600px; margin: 0 auto; line-height: 1.8; }
+
+        /* INTRO */
+        .intro { background: var(--warm-white); padding: 5rem 2rem; }
+        .intro-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; text-align: center; }
+        .intro-stat .number { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 400; color: var(--deep-green); line-height: 1; margin-bottom: 0.5rem; }
+        .intro-stat .label { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--warm-gray); }
+        .intro-divider { width: 40px; height: 1.5px; background: var(--gold); margin: 0.8rem auto; }
+
+        /* BOOKSTORES */
+        .bookstores { background: var(--cream); }
+        .bookstore-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 2rem; }
+        .bookstore-card { background: var(--warm-white); border-radius: 8px; overflow: hidden; box-shadow: var(--soft-shadow); transition: all 0.4s ease; cursor: pointer; }
+        .bookstore-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(28,25,23,0.12); }
+        .bookstore-img { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .bookstore-info { padding: 1.8rem; }
+        .bookstore-tag { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: var(--leather); background: var(--parchment); padding: 0.3rem 0.8rem; border-radius: 2px; margin-bottom: 0.8rem; }
+        .bookstore-name { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 500; margin-bottom: 0.5rem; color: var(--ink); }
+        .bookstore-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--warm-gray); line-height: 1.7; margin-bottom: 1rem; }
+        .bookstore-meta { display: flex; align-items: center; gap: 1.5rem; font-size: 0.78rem; color: var(--warm-gray); font-family: 'Inter', sans-serif; }
+        .bookstore-meta span { display: flex; align-items: center; gap: 0.4rem; }
+        .bookstore-link { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--deep-green); text-decoration: none; margin-top: 0.8rem; transition: color 0.3s; }
+        .bookstore-link:hover { color: var(--gold); }
+        .bookstore-link::after { content: ' \2192'; }
+
+        /* EVENTS */
+        .events { background: var(--forest); color: var(--warm-white); }
+        .events .section-label { color: var(--gold); }
+        .events .section-title { color: var(--warm-white); }
+        .events .section-desc { color: rgba(255,253,249,0.65); }
+        .events-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .event-card { display: flex; gap: 1.5rem; padding: 2rem; background: rgba(255,253,249,0.05); border: 1px solid rgba(255,253,249,0.08); border-radius: 8px; transition: all 0.3s ease; }
+        .event-card:hover { background: rgba(255,253,249,0.08); border-color: rgba(212,168,67,0.3); }
+        .event-date { flex-shrink: 0; text-align: center; width: 70px; }
+        .event-date .month { font-family: 'Inter', sans-serif; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gold); font-weight: 600; }
+        .event-date .day { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 400; line-height: 1.1; color: var(--warm-white); }
+        .event-details h3 { font-size: 1.2rem; font-weight: 500; margin-bottom: 0.4rem; color: var(--warm-white); }
+        .event-details p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: rgba(255,253,249,0.6); line-height: 1.6; }
+        .event-type { display: inline-block; font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sage); margin-bottom: 0.4rem; }
+
+        /* STAY & DINE */
+        .stay-dine { background: var(--warm-white); }
+        .stay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+        .stay-card { position: relative; border-radius: 8px; overflow: hidden; min-height: 500px; display: flex; align-items: flex-end; cursor: pointer; }
+        .stay-card-bg { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 0.6s ease; }
+        .stay-card:hover .stay-card-bg { transform: scale(1.05); }
+        .stay-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,25,23,0.85) 0%, rgba(28,25,23,0.2) 60%, transparent 100%); }
+        .stay-card-content { position: relative; z-index: 2; padding: 2.5rem; width: 100%; }
+        .stay-card-content .tag { font-family: 'Inter', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 0.8rem; display: block; }
+        .stay-card-content h3 { font-size: 1.8rem; color: var(--warm-white); margin-bottom: 0.6rem; font-weight: 500; }
+        .stay-card-content p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: rgba(255,253,249,0.7); line-height: 1.7; margin-bottom: 1.2rem; }
+        .stay-card-content .link { font-family: 'Inter', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; transition: gap 0.3s; }
+        .stay-card-content .link:hover { gap: 0.8rem; }
+
+        /* VISIT */
+        .visit { background: var(--cream); }
+        .visit-features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-bottom: 4rem; }
+        .visit-feature { text-align: center; padding: 2.5rem 1.5rem; background: var(--warm-white); border-radius: 8px; box-shadow: var(--soft-shadow); transition: all 0.3s ease; }
+        .visit-feature:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(28,25,23,0.1); }
+        .visit-icon { font-size: 2.5rem; margin-bottom: 1.2rem; display: block; }
+        .visit-feature h3 { font-size: 1.15rem; margin-bottom: 0.6rem; font-weight: 500; }
+        .visit-feature p { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--warm-gray); line-height: 1.6; }
+        .visit-callout { background: var(--parchment); border-radius: 8px; padding: 3.5rem; display: flex; align-items: center; gap: 3rem; }
+        .visit-callout-text { flex: 1; }
+        .visit-callout h3 { font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .visit-callout p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-gray); line-height: 1.7; margin-bottom: 1.5rem; }
+        .visit-callout-map { flex: 1; height: 300px; border-radius: 8px; overflow: hidden; }
+        .visit-callout-map iframe { width: 100%; height: 100%; border: 0; }
+
+        /* SOCIAL */
+        .social { background: var(--warm-white); text-align: center; }
+        .insta-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; margin-top: 3rem; }
+        .insta-item { aspect-ratio: 1; overflow: hidden; border-radius: 4px; position: relative; cursor: pointer; }
+        .insta-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .insta-item:hover img { transform: scale(1.1); }
+        .insta-item::after { content: ''; position: absolute; inset: 0; background: rgba(45,74,62,0); transition: background 0.3s; }
+        .insta-item:hover::after { background: rgba(45,74,62,0.3); }
+
+        /* SOCIAL ACCOUNTS */
+        .social-accounts { background: var(--cream); padding: 2rem 2rem 0; }
+        .social-accounts-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+        .social-account { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; background: var(--warm-white); border-radius: 6px; text-decoration: none; color: var(--ink); transition: all 0.3s; border: 1px solid transparent; }
+        .social-account:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--soft-shadow); }
+        .social-account .platform { font-family: 'Inter', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--leather); }
+        .social-account .handle { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; }
+        .social-account .desc { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--warm-gray); }
+        .social-icon { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; background: var(--parchment); }
+
+        /* NEWSLETTER */
+        .newsletter { background: var(--parchment); padding: 5rem 2rem; }
+        .newsletter-inner { max-width: 650px; margin: 0 auto; text-align: center; }
+        .newsletter h2 { font-size: 2rem; margin-bottom: 0.8rem; }
+        .newsletter p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--warm-gray); margin-bottom: 2rem; }
+        .newsletter-form { display: flex; gap: 0.8rem; max-width: 500px; margin: 0 auto; }
+        .newsletter-form input { flex: 1; padding: 1rem 1.3rem; font-family: 'Inter', sans-serif; font-size: 0.88rem; border: 1.5px solid var(--light-gray); border-radius: 4px; background: var(--warm-white); color: var(--ink); outline: none; transition: border-color 0.3s; }
+        .newsletter-form input:focus { border-color: var(--deep-green); }
+        .newsletter-form input::placeholder { color: var(--light-gray); }
+        .newsletter-form button { padding: 1rem 2rem; background: var(--deep-green); color: var(--warm-white); border: none; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s; white-space: nowrap; }
+        .newsletter-form button:hover { background: var(--forest); }
+
+        /* HISTORY */
+        .history { background: var(--parchment); }
+        .history-content { max-width: 900px; margin: 0 auto; }
+        .history-timeline { position: relative; padding-left: 3rem; }
+        .history-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--gold), var(--leather), var(--deep-green)); }
+        .timeline-item { position: relative; margin-bottom: 3rem; padding-bottom: 1rem; }
+        .timeline-item::before { content: ''; position: absolute; left: -3rem; top: 0.5rem; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 3px solid var(--parchment); box-shadow: 0 0 0 2px var(--gold); z-index: 1; }
+        .timeline-year { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--deep-green); margin-bottom: 0.5rem; font-weight: 500; }
+        .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); margin-bottom: 0.5rem; font-weight: 500; }
+        .timeline-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--warm-gray); line-height: 1.8; }
+        .history-quote { background: var(--warm-white); border-radius: 8px; padding: 2.5rem 3rem; margin: 3rem 0; position: relative; box-shadow: var(--soft-shadow); }
+        .history-quote::before { content: '\201C'; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--gold); position: absolute; top: -0.5rem; left: 1.5rem; line-height: 1; opacity: 0.5; }
+        .history-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--ink); line-height: 1.7; padding-left: 1rem; }
+        .history-quote .attribution { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: var(--warm-gray); margin-top: 1rem; padding-left: 1rem; font-style: normal; }
+
+        /* FOOTER */
+        footer { background: var(--ink); color: rgba(255,253,249,0.5); padding: 5rem 2rem 2.5rem; }
+        .footer-grid { max-width: 1200px; margin: 0 auto 4rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+        .footer-brand { display: flex; flex-direction: column; gap: 1rem; }
+        .footer-brand-logo { display: flex; align-items: center; gap: 0.8rem; }
+        .footer-brand-logo img { width: 50px; height: 50px; border-radius: 50%; object-fit: contain; background: white; }
+        .footer-brand h3 { font-size: 1.5rem; color: var(--warm-white); }
+        .footer-brand p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.7; max-width: 300px; }
+        .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,253,249,0.7); margin-bottom: 1.2rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 0.6rem; }
+        .footer-col a { color: rgba(255,253,249,0.45); text-decoration: none; transition: color 0.3s; font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+        .footer-col a:hover { color: var(--gold); }
+        .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 2.5rem; border-top: 1px solid rgba(255,253,249,0.08); display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; }
+        .footer-social { display: flex; gap: 1.5rem; }
+        .footer-social a { color: rgba(255,253,249,0.4); text-decoration: none; transition: color 0.3s; font-size: 0.9rem; }
+        .footer-social a:hover { color: var(--gold); }
+
+        /* ANIMATIONS */
+        .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .events-grid { grid-template-columns: 1fr; }
+            .stay-grid { grid-template-columns: 1fr; }
+            .visit-features { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        }
+        @media (max-width: 768px) {
+            section { padding: 4rem 1.5rem; }
+            .nav-links { display: none; }
+            .mobile-toggle { display: block; }
+            .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .bookstore-grid { grid-template-columns: 1fr; }
+            .visit-features { grid-template-columns: 1fr; }
+            .visit-callout { flex-direction: column; }
+            .insta-grid { grid-template-columns: repeat(3, 1fr); }
+            .newsletter-form { flex-direction: column; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+            .stay-card { min-height: 400px; }
+            .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(250,246,241,0.98); backdrop-filter: blur(20px); padding: 2rem; gap: 1.5rem; }
+            .nav-links.open a { color: var(--ink) !important; }
+        }
+        @media (max-width: 480px) { .hero h1 { font-size: 2.2rem; } .hero-sub { font-size: 1.05rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- NAV -->
+    <nav class="transparent" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">
+                <img src="logo-v2.png" alt="Hobart Book Village" class="nav-logo-img">
+                Hobart Book Village
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#bookstores">Bookstores</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#stay">Stay & Dine</a></li>
+                <li><a href="#visit">Visit</a></li>
+                <li><a href="#history">History</a></li>
+                <li><a href="itineraries.html">Itineraries</a></li>
+                <li><a href="#stay" class="nav-cta">Plan Your Trip</a></li>
+            </ul>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <img src="logo-v2.png" alt="Hobart Book Village Logo" class="hero-logo">
+            <br>
+            <span class="hero-badge">Est. 2005 &mdash; Catskill Mountains, NY</span>
+            <h1>A Village of <em>Books</em><br>in the Mountains</h1>
+            <p class="hero-sub">Seven independent bookshops &mdash; and counting &mdash; on one Main Street. A village of about 400 in the Northern Catskills where every corner holds a story worth finding.</p>
+            <div class="hero-buttons">
+                <a href="#bookstores" class="btn btn-primary">Explore the Shops</a>
+                <a href="#stay" class="btn btn-outline">Plan Your Visit</a>
+            </div>
+        </div>
+        <a href="#intro" class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></a>
+    </section>
+
+    <!-- INTRO -->
+    <section class="intro" id="intro">
+        <div class="intro-grid fade-up">
+            <div class="intro-stat"><div class="number">7+</div><div class="intro-divider"></div><div class="label">Independent Bookshops</div></div>
+            <div class="intro-stat"><div class="number">400</div><div class="intro-divider"></div><div class="label">Village Residents</div></div>
+            <div class="intro-stat"><div class="number">1</div><div class="intro-divider"></div><div class="label">Main Street to Explore</div></div>
+        </div>
+    </section>
+
+    <!-- BOOKSTORES -->
+    <section class="bookstores" id="bookstores">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">The Shops</span>
+                <h2 class="section-title">Seven Shops &amp; Growing,<br>Infinite Stories</h2>
+                <p class="section-desc">Each shop on Main Street has its own personality, specialty, and loyal following. From 17th-century antiquarian volumes to mysteries on the honor system, there's a shelf waiting for you.</p>
+            </div>
+            <div class="bookstore-grid">
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1526243741027-444d633d7365?w=600&q=80" alt="Blenheim Hill Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Fiction &bull; Poetry &bull; Women's Studies</span>
+                        <h3 class="bookstore-name">Blenheim Hill Books</h3>
+                        <p class="bookstore-desc">Run by retired professors Barbara Balliet &amp; Cheryl Clarke since 2009. A cozy, welcoming shop known for its poetry, women's history, fiction, children's books, and nature writing. Home of the Hobart Festival of Women Writers.</p>
+                        <div class="bookstore-meta"><span>&#128205; 698 Main St</span><span>&#128214; Used</span><span>&#128344; Weekends 10&ndash;5</span></div>
+                        <a href="https://www.blenheimhillbooks.com/" target="_blank" class="bookstore-link">Visit Website</a>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=600&q=80" alt="Wm. H. Adams Antiquarian">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Antiquarian &bull; Pre-1850 &bull; Rare</span>
+                        <h3 class="bookstore-name">Wm. H. Adams' Antiquarian Books</h3>
+                        <p class="bookstore-desc">Three floors of 17th&ndash;20th century texts &mdash; Theology, Classics in Greek &amp; Latin, Art, Science, Natural History, and signed editions. Bill &amp; Diana Adams always have tea, cheese, and sherry waiting for visitors.</p>
+                        <div class="bookstore-meta"><span>&#128205; 602 Main St</span><span>&#128214; Rare &amp; Antique</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                        <a href="https://whabooks.com/" target="_blank" class="bookstore-link">Visit Website</a>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80" alt="Liberty Rock Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">General &bull; 85,000+ Volumes</span>
+                        <h3 class="bookstore-name">Liberty Rock Books</h3>
+                        <p class="bookstore-desc">The village's largest store &mdash; 5,000 sq ft housing up to 85,000 volumes spanning 300 years. Owned by John &amp; Jim Mahoney and Tom Liotta. Also hosts author readings and book-signings. Est. 1976 in Rockland County, now proudly Hobart.</p>
+                        <div class="bookstore-meta"><span>&#128205; 678 Main St</span><span>&#128214; Used &amp; Vintage</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=600&q=80" alt="Creative Corner Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Cookbooks &bull; Crafts &bull; DIY</span>
+                        <h3 class="bookstore-name">Creative Corner Books</h3>
+                        <p class="bookstore-desc">Opened by Kathy &amp; George Duyer in 2016. New, used, and vintage cookbooks &amp; craft books plus Kathy's Vintage Kitchen, local pottery, handmade needlecrafts, honey, jam, and gift items by local artisans.</p>
+                        <div class="bookstore-meta"><span>&#128205; 607 Main St</span><span>&#128214; New &amp; Used</span><span>&#128344; Wed&ndash;Sun 11&ndash;5</span></div>
+                        <a href="http://www.creativecornerbooks.com/" target="_blank" class="bookstore-link">Visit Website</a>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80" alt="Quarry Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Mystery &bull; Sci-Fi</span>
+                        <h3 class="bookstore-name">Quarry Books</h3>
+                        <p class="bookstore-desc">Founded by Don Dales himself in the oldest foundation in Hobart. Specializing in mysteries and science fiction, this charming shop operates on the honor system &mdash; cash or check, trust-based.</p>
+                        <div class="bookstore-meta"><span>&#128205; 645 Main St</span><span>&#128214; Honor System</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80" alt="NY Books & Ephemera">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">New York State &bull; History &bull; Local</span>
+                        <h3 class="bookstore-name">New York Books &amp; Ephemera</h3>
+                        <p class="bookstore-desc">All things New York &mdash; history, geography, travel, memoir, food, architecture, arts, nature, plus fiction by NY authors. Also stocks local farm products and handcrafted items. Opened 2020 by Kathy &amp; George Duyer.</p>
+                        <div class="bookstore-meta"><span>&#128205; 615 Main St</span><span>&#128214; Regional Focus</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up">
+                    <img class="bookstore-img" src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=600&q=80" alt="More Good Books">
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag">Trains &bull; Ships &bull; Sports &bull; Hobbies</span>
+                        <h3 class="bookstore-name">More Good Books</h3>
+                        <p class="bookstore-desc">A niche bookshop specializing in railroads, ships &amp; boats, automobiles, games, sports, hobbies, and pets. Located in the historic Hobart Inn building alongside The Book Nook &mdash; a free children's lending library.</p>
+                        <div class="bookstore-meta"><span>&#128205; 645 Main St</span><span>&#128214; Specialty</span><span>&#128344; Weekends 11&ndash;5</span></div>
+                    </div>
+                </div>
+                <div class="bookstore-card fade-up" style="border: 2px dashed var(--gold);">
+                    <div style="height:220px; background: linear-gradient(135deg, var(--parchment), var(--cream)); display:flex; align-items:center; justify-content:center;">
+                        <span style="font-family:'Playfair Display',serif; font-size:1.8rem; color:var(--leather);">Coming Soon</span>
+                    </div>
+                    <div class="bookstore-info">
+                        <span class="bookstore-tag" style="background:var(--gold); color:var(--warm-white);">Opening 2026</span>
+                        <h3 class="bookstore-name">The Inn Bookshop &amp; Coffee</h3>
+                        <p class="bookstore-desc">A new chapter for the Book Village Inn &mdash; browse shelves with a latte in hand. Books, coffee, and conversation under one roof.</p>
+                        <div class="bookstore-meta"><span>&#128205; 760 Main St</span><span>&#9749; Books + Coffee</span><span>&#128344; Daily hours TBA</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section class="events" id="events">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">What's Happening</span>
+                <h2 class="section-title">Events &amp; Gatherings</h2>
+                <p class="section-desc">From author readings to seasonal festivals, there's always a reason to visit the village.</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">May</span><span class="day">23</span></div>
+                    <div class="event-details"><span class="event-type">Annual Festival</span><h3>Memorial Day Weekend Sale</h3><p>The village's legendary semi-annual sale. Every shop offers special deals, and collectors travel from across the Northeast.</p></div>
+                </div>
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">Jun</span><span class="day">14</span></div>
+                    <div class="event-details"><span class="event-type">Author Event</span><h3>Summer Author Reading Series</h3><p>Local and visiting authors share their latest work in an intimate village setting. Wine and conversation to follow.</p></div>
+                </div>
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">Aug</span><span class="day">8</span></div>
+                    <div class="event-details"><span class="event-type">Literary Festival</span><h3>Festival of Women Writers</h3><p>Celebrating women's voices in literature with panels, readings, workshops, and community discussions throughout the village.</p></div>
+                </div>
+                <div class="event-card fade-up">
+                    <div class="event-date"><span class="month">Nov</span><span class="day">27</span></div>
+                    <div class="event-details"><span class="event-type">Annual Festival</span><h3>Thanksgiving Weekend Sale</h3><p>The second great semi-annual sale. Skip the malls and spend the holiday weekend browsing books in the mountains.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STAY & DINE -->
+    <section class="stay-dine" id="stay">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Stay & Dine</span>
+                <h2 class="section-title">Rest, Read, &amp; Refuel</h2>
+                <p class="section-desc">Make it a weekend. The Book Village Inn offers rooms, a bar, and soon &mdash; a bookshop and coffee bar right inside.</p>
+            </div>
+            <div class="stay-grid">
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">Boutique Hotel &bull; Est. 1890</span>
+                        <h3>Book Village Inn</h3>
+                        <p>A beautifully preserved boutique hotel at 760 Main Street, dating back to 1890. Pet-friendly rooms with WiFi, A/C, firepit, and garden. Rated 9.0 "Wonderful" on Expedia. Eight bookstores right outside your door.</p>
+                        <a href="https://www.bookvillageinn.com/" target="_blank" class="link">Book a Room &rarr;</a>
+                    </div>
+                </div>
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">Thu&ndash;Sun &bull; 4pm&ndash;10pm</span>
+                        <h3>The Inn Bar &amp; Restaurant</h3>
+                        <p>Cozy meals, local beer, and artisanal cocktails. Whether you're staying at the Inn or just passing through, the bar is the village's gathering spot for stories and good company.</p>
+                        <a href="https://www.bookvillageinn.com/" target="_blank" class="link">See the Menu &rarr;</a>
+                    </div>
+                </div>
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">Coming Soon</span>
+                        <h3>The Inn Bookshop &amp; Coffee</h3>
+                        <p>Opening in the Inn's lobby &mdash; browse curated shelves with a fresh pour-over in hand. Books, coffee, and good conversation.</p>
+                        <a href="https://www.bookvillageinn.com/" target="_blank" class="link">Stay Tuned &rarr;</a>
+                    </div>
+                </div>
+                <div class="stay-card fade-up">
+                    <div class="stay-card-bg" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80');"></div>
+                    <div class="stay-card-overlay"></div>
+                    <div class="stay-card-content">
+                        <span class="tag">The Region</span>
+                        <h3>Catskill Mountain Country</h3>
+                        <p>Hiking, swimming holes, farm stands, and winding country roads. The Northern Catskills are your backyard here.</p>
+                        <a href="#visit" class="link">Explore the Area &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISIT -->
+    <section class="visit" id="visit">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Plan Your Trip</span>
+                <h2 class="section-title">Visit Hobart</h2>
+                <p class="section-desc">A tiny village with an outsized personality, tucked into the rolling hills of the Northern Catskills.</p>
+            </div>
+            <div class="visit-features fade-up">
+                <div class="visit-feature"><span class="visit-icon">&#128218;</span><h3>Browse All Day</h3><p>Seven bookshops within walking distance on Main Street. Open weekends 11&ndash;5, with two huge semi-annual sales on Memorial Day and Thanksgiving weekends.</p></div>
+                <div class="visit-feature"><span class="visit-icon">&#127956;</span><h3>Hike & Explore</h3><p>Catskill trails, covered bridges, swimming holes, and farm country all nearby.</p></div>
+                <div class="visit-feature"><span class="visit-icon">&#127860;</span><h3>Eat & Drink</h3><p>Local eateries, farm-to-table dining, craft beverages, and the Inn's own bar.</p></div>
+                <div class="visit-feature"><span class="visit-icon">&#127769;</span><h3>Stay the Night</h3><p>Book a room at the Inn and wake up to mountain air and a village full of stories.</p></div>
+            </div>
+            <div class="visit-callout fade-up">
+                <div class="visit-callout-text">
+                    <h3>Getting Here</h3>
+                    <p>Hobart is on State Route 10 in Delaware County, between Bloomville and Stamford in the Great Western Catskills. About 3 hours from NYC and 45 minutes from Oneonta. The entire village is walkable &mdash; park once and explore on foot.</p>
+                    <a href="https://maps.google.com/?q=Hobart+NY" target="_blank" class="btn btn-primary" style="display:inline-flex;">Get Directions &rarr;</a>
+                </div>
+                <div class="visit-callout-map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5938.536!2d-74.668!3d42.3725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89dce7d2a1c2d8ab%3A0x4e8df0d3cbb92c5e!2sHobart%2C+NY+13788!5e0!3m2!1sen!2sus!4v1" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="history" id="history">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">Our Story</span>
+                <h2 class="section-title">A Village Reborn<br>Through Books</h2>
+                <p class="section-desc">From indigenous hunting grounds to a literary destination &mdash; the story of Hobart is one of reinvention, community, and the enduring power of a good book.</p>
+            </div>
+
+            <div class="history-content">
+                <div class="history-timeline fade-up">
+                    <div class="timeline-item">
+                        <div class="timeline-year">Pre-1763</div>
+                        <div class="timeline-title">Ancient Roots</div>
+                        <div class="timeline-text">Long before European settlement, the land around present-day Hobart served as hunting grounds for the Lenape and Mohawk peoples of the Northeastern Woodlands.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1784</div>
+                        <div class="timeline-title">Settlers Arrive</div>
+                        <div class="timeline-text">After the American Revolution, settlers &mdash; many from Connecticut and New England &mdash; moved into the area, building farms, mills, and inns. The village was originally known as Waterville.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1828</div>
+                        <div class="timeline-title">A New Name</div>
+                        <div class="timeline-text">The U.S. Postal Service requested the village rename itself to avoid confusion with the more populated Waterville, New York. The community became Hobart.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">1884</div>
+                        <div class="timeline-title">The Railroad Arrives</div>
+                        <div class="timeline-text">A railroad line connected to the village, fueling growth through agriculture and commerce. Hobart thrived as a small Catskill Mountain community.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Late 1900s</div>
+                        <div class="timeline-title">A Village in Decline</div>
+                        <div class="timeline-text">Like much of rural upstate New York, Hobart saw businesses close, revenue decline, and population shrink through the second half of the twentieth century. Main Street grew quiet.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Early 2000s</div>
+                        <div class="timeline-title">Don Dales Sees a Vision</div>
+                        <div class="timeline-text">Don Dales, who grew up in nearby Stamford just three miles away, came to Hobart and saw a Main Street so empty you could imagine tumbleweeds blowing through. He bought up vacant buildings along Main Street with a bold idea: fill them with booksellers.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2001</div>
+                        <div class="timeline-title">The First Booksellers Arrive</div>
+                        <div class="timeline-text">Bill &amp; Diana Adams &mdash; retired and dreaming of becoming booksellers &mdash; drove through Hobart from Manhattan, saw a corner store for rent, and took it on the spot. They began moving in books Bill already owned, establishing what would become Wm. H. Adams' Antiquarian Books.</div>
+                    </div>
+                </div>
+
+                <div class="history-quote fade-up">
+                    <p>Inspired by the legendary Book Village of Hay-on-Wye in Wales &mdash; where a single visionary turned a small town into a destination of nearly 25 bookstores &mdash; Don Dales began welcoming fellow entrepreneurs to open shops in his empty buildings, dreaming of a literature lover's enclave in the Catskills.</p>
+                    <div class="attribution">&mdash; The founding idea behind Hobart Book Village</div>
+                </div>
+
+                <div class="history-timeline fade-up">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2005</div>
+                        <div class="timeline-title">Hobart Book Village Is Born</div>
+                        <div class="timeline-text">Don Dales officially established Hobart Book Village &mdash; the only book village east of the Mississippi. By this point there were four bookstores, and the vision was taking shape. Dales welcomed more entrepreneurs to open shops alongside the growing literary community.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2009</div>
+                        <div class="timeline-title">Blenheim Hill Books Opens</div>
+                        <div class="timeline-text">Retired professors Barbara Balliet &amp; Cheryl Clarke had bought a house near the village in 2005. After years of browsing and befriending booksellers, they jumped into the business themselves &mdash; opening Blenheim Hill Books and later co-founding the Hobart Festival of Women Writers.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2016&ndash;2020</div>
+                        <div class="timeline-title">New Shops &amp; New Energy</div>
+                        <div class="timeline-text">Kathy &amp; George Duyer opened Creative Corner Books in 2016, followed by New York Books &amp; Ephemera in 2020. Liberty Rock Books &mdash; established in 1976 in Rockland County &mdash; relocated to Hobart, bringing 85,000 volumes. The village grew to seven independent shops.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">Present</div>
+                        <div class="timeline-title">The Book Village Inn &amp; Beyond</div>
+                        <div class="timeline-text">The Book Village Inn &amp; Bar opened its doors at 760 Main Street, adding cozy accommodations and a gathering spot for visitors. Annual events like the Memorial Day and Thanksgiving Weekend Sales draw collectors from across the Northeast.</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-title">The Next Chapter</div>
+                        <div class="timeline-text">A new bookshop and coffee bar is opening inside the Inn, and two existing shops are changing hands &mdash; proving that Don Dales' belief was right all along: books can bring a community back to life.</div>
+                    </div>
+                </div>
+
+                <div class="history-quote fade-up">
+                    <p>Dales didn't start Hobart Book Village to get rich. He started it to make a difference and build something that could last &mdash; a place that could help a community, create experiences, and bring people together.</p>
+                    <div class="attribution">&mdash; On Don Dales' legacy</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL -->
+    <section class="social">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-label">@hobartbookvillageny</span>
+                <h2 class="section-title">From the Village</h2>
+                <p class="section-desc">Follow along for bookshop finds, mountain views, and village life.<br><a href="https://www.instagram.com/hobartbookvillageny/" target="_blank" style="color:var(--deep-green); text-decoration:none; font-family:'Inter',sans-serif; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.1em;">Follow on Instagram &rarr;</a></p>
+            </div>
+            <div class="insta-grid fade-up">
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&q=80" alt="Books"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1519682577862-22b62b24e493?w=400&q=80" alt="Mountain views"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400&q=80" alt="Bookshop"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&q=80" alt="Cozy reading"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&q=80" alt="Catskills"></div>
+                <div class="insta-item"><img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=400&q=80" alt="Book stack"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL ACCOUNTS -->
+    <section class="social-accounts">
+        <div class="section-container">
+            <div class="section-header fade-up" style="margin-bottom:2rem;">
+                <span class="section-label">Follow Us</span>
+                <h2 class="section-title" style="font-size:1.8rem;">Village Social Accounts</h2>
+            </div>
+            <div class="social-accounts-grid fade-up">
+                <a href="https://www.instagram.com/hobartbookvillageny/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@hobartbookvillageny</div><div class="desc">The Book Village</div></div>
+                </a>
+                <a href="https://www.instagram.com/bookvillageinn/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@bookvillageinn</div><div class="desc">The Inn &amp; Bar</div></div>
+                </a>
+                <a href="https://www.instagram.com/blenheimhillbooks/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@blenheimhillbooks</div><div class="desc">Blenheim Hill Books</div></div>
+                </a>
+                <a href="https://www.instagram.com/creativecornerbooks/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@creativecornerbooks</div><div class="desc">Creative Corner Books</div></div>
+                </a>
+                <a href="https://www.instagram.com/thehobarthouse/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram</div><div class="handle">@thehobarthouse</div><div class="desc">The Hobart House</div></div>
+                </a>
+                <a href="https://www.instagram.com/greatwesterncatskills/" target="_blank" class="social-account">
+                    <div class="social-icon">&#128247;</div>
+                    <div><div class="platform">Instagram &bull; 49K followers</div><div class="handle">@greatwesterncatskills</div><div class="desc">Delaware County Tourism</div></div>
+                </a>
+                <a href="https://www.tiktok.com/discover/hobart-book-village" target="_blank" class="social-account">
+                    <div class="social-icon">&#127916;</div>
+                    <div><div class="platform">TikTok</div><div class="handle">#HobartBookVillage</div><div class="desc">5M+ views &amp; counting</div></div>
+                </a>
+                <a href="https://www.facebook.com/hobartbookvillage" target="_blank" class="social-account">
+                    <div class="social-icon">&#128172;</div>
+                    <div><div class="platform">Facebook</div><div class="handle">Hobart Book Village</div><div class="desc">Events &amp; updates</div></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <div class="newsletter-inner fade-up">
+            <h2>Stay in the Story</h2>
+            <p>Get village updates, event announcements, and the occasional book recommendation delivered to your inbox.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed!'; this.querySelector('button').style.background='var(--leather)';">
+                <input type="email" placeholder="Your email address" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-brand-logo">
+                    <img src="logo-v2.png" alt="Hobart Book Village">
+                    <h3>Hobart Book Village</h3>
+                </div>
+                <p>The only Book Village east of the Mississippi. Seven independent bookshops on Main Street in the Northern Catskills, with more on the way.</p>
+            </div>
+            <div class="footer-col"><h4>Explore</h4><ul><li><a href="#bookstores">Bookstores</a></li><li><a href="#events">Events</a></li><li><a href="#stay">Stay & Dine</a></li><li><a href="#visit">Getting Here</a></li></ul></div>
+            <div class="footer-col"><h4>The Inn</h4><ul><li><a href="https://www.bookvillageinn.com/" target="_blank">Rooms</a></li><li><a href="https://www.bookvillageinn.com/" target="_blank">Bar & Kitchen</a></li><li><a href="#">Bookshop & Coffee</a></li><li><a href="#">Private Events</a></li></ul></div>
+            <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">Contact Us</a></li><li><a href="#">Press & Media</a></li><li><a href="#">Partner With Us</a></li><li><a href="#">Volunteer</a></li></ul></div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Hobart Book Village. All rights reserved.</span>
+            <div class="footer-social"><a href="https://www.instagram.com/hobartbookvillageny/" target="_blank">Instagram</a><a href="https://www.facebook.com/hobartbookvillage" target="_blank">Facebook</a><a href="https://www.tiktok.com/discover/hobart-book-village" target="_blank">TikTok</a></div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 80) { navbar.classList.remove('transparent'); navbar.classList.add('scrolled'); }
+            else { navbar.classList.add('transparent'); navbar.classList.remove('scrolled'); }
+        });
+        document.getElementById('mobileToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) { t.scrollIntoView({ behavior: 'smooth', block: 'start' }); document.getElementById('navLinks').classList.remove('open'); } });
+        });
+    </script>
+</body>
+</html>
