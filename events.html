@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events & Gatherings — Hobart Book Village</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="inner" data-active="events">
+
+    <!-- Navigation is injected by site.js -->
+
+    <header class="subpage-hero">
+        <span class="eyebrow">What's Happening</span>
+        <h1>Events &amp; Gatherings</h1>
+        <p>From the annual Festival of Women Writers to gallery receptions, author readings, and seasonal sales, there's always a reason to visit the village.</p>
+    </header>
+
+    <section class="events" style="padding-top:4rem;">
+        <div class="section-container">
+            <div class="events-grid" id="eventsFull"></div>
+            <p style="text-align:center; margin-top:3rem; font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:rgba(255,253,249,0.7);">
+                Dates vary by season &mdash; check the
+                <a href="http://www.hobartbookvillage.com/calendar.html" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">village calendar</a>
+                and follow <a href="https://www.instagram.com/hobartbookvillageny/" target="_blank" rel="noopener" style="color:var(--gold); text-decoration:none;">@hobartbookvillageny</a> for the latest.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer is injected by site.js -->
+
+    <script src="events.js"></script>
+    <script>
+        document.getElementById("eventsFull").innerHTML = window.EVENTS.map(function (e) {
+            return '<div class="event-card fade-up">' +
+                '<div class="event-date"><span class="month">' + e.badgeTop + '</span><span class="day">' + e.badgeBig + '</span></div>' +
+                '<div class="event-details"><span class="event-type">' + e.type + '</span><h3>' + e.title + '</h3><p>' + e.long + '</p></div>' +
+            '</div>';
+        }).join("");
+    </script>
+    <script src="site.js"></script>
+</body>
+</html>

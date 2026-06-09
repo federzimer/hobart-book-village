@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookshop — Hobart Book Village</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="inner" data-active="bookshops">
+
+    <!-- Navigation is injected by site.js -->
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> &nbsp;/&nbsp;
+        <a href="index.html#bookstores">Bookshops</a> &nbsp;/&nbsp;
+        <span id="crumbName">Bookshop</span>
+    </div>
+
+    <main class="shop-page" id="shopPage">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--warm-gray);">Loading&hellip;</p>
+    </main>
+
+    <!-- Footer is injected by site.js -->
+
+    <script src="shops.js"></script>
+    <script>
+        (function () {
+            var params = new URLSearchParams(window.location.search);
+            var id = params.get("id");
+            var shop = (window.SHOPS || []).find(function (s) { return s.id === id; });
+            var page = document.getElementById("shopPage");
+
+            if (!shop) {
+                document.getElementById("crumbName").textContent = "Not found";
+                page.innerHTML =
+                    '<h1 style="font-family:\'Playfair Display\',serif;color:var(--ink);">Shop not found</h1>' +
+                    '<p style="font-family:\'Cormorant Garamond\',serif;font-size:1.2rem;color:var(--warm-gray);">' +
+                    'We couldn\'t find that bookshop. <a href="index.html#bookstores" style="color:var(--deep-green);">Browse all shops &rarr;</a></p>';
+                return;
+            }
+
+            document.title = shop.name + " — Hobart Book Village";
+            // crumbName is plain text, so decode any HTML entities in the name
+            var tmp = document.createElement("div"); tmp.innerHTML = shop.name;
+            document.getElementById("crumbName").textContent = tmp.textContent;
+
+            var longHtml = shop.long.map(function (p) { return "<p>" + p + "</p>"; }).join("");
+            var chips = shop.specialties.map(function (c) { return "<span>" + c + "</span>"; }).join("");
+            var hours = shop.hours.map(function (h) {
+                return '<div class="hours-row"><div class="hours-season">' + h.season + '</div>' +
+                       '<div class="hours-text">' + h.text + '</div></div>';
+            }).join("");
+
+            var contact = "";
+            if (shop.owners) contact += '<div class="info-row"><h3>Proprietors</h3><p>' + shop.owners + '</p></div>';
+            contact += '<div class="info-row"><h3>Find It</h3><p>' + shop.address + ', Hobart, NY 13788</p></div>';
+            if (shop.phone) contact += '<div class="info-row"><h3>Phone</h3><p>' + shop.phone + '</p></div>';
+            if (shop.website) {
+                contact += '<div class="info-row"><a class="btn btn-primary" href="' + shop.website +
+                           '" target="_blank" rel="noopener">Visit Website &rarr;</a></div>';
+            }
+
+            page.innerHTML =
+                '<img class="shop-cover" src="' + shop.image + '" alt="' + shop.name + '">' +
+                '<div class="shop-layout">' +
+                    '<div class="shop-main">' +
+                        '<span class="bookstore-tag">' + shop.tags + '</span>' +
+                        '<h1>' + shop.name + '</h1>' +
+                        longHtml +
+                        '<div class="specialty-chips">' + chips + '</div>' +
+                    '</div>' +
+                    '<aside class="shop-aside">' +
+                        '<div class="info-row"><h3>Hours</h3>' + hours + '</div>' +
+                        contact +
+                    '</aside>' +
+                '</div>' +
+                '<a class="shop-back" href="index.html#bookstores" style="display:inline-block;margin:2rem 0;font-family:\'Inter\',sans-serif;font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--deep-green);text-decoration:none;">&larr; All bookshops</a>';
+        })();
+    </script>
+    <script src="site.js"></script>
+</body>
+</html>

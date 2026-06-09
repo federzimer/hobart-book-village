@@ -1,0 +1,202 @@
+/* ============================================================
+   shops.js  —  the single source of truth for every bookshop
+   ------------------------------------------------------------
+   Both the home-page grid and the individual shop pages
+   (shop.html?id=...) are built from this list. To add, edit, or
+   reorder a shop, change it HERE and both places update.
+
+   Fields:
+     id          short slug used in the URL (shop.html?id=adams)
+     name        display name
+     tags        specialty line shown on the card pill
+     type        short "kind of shop" chip on the card
+     address     location chip on the card
+     hoursShort  hours chip on the card
+     image       photo URL (card + page hero)
+     short       one-paragraph blurb for the home grid
+     long        array of paragraphs for the shop page
+     specialties array of subjects (shown as chips on the page)
+     owners      proprietor names ("" if none listed)
+     phone       "" if none listed
+     website     external site ("" if none)
+     hours       array of { season, text } rows for the page
+   ============================================================ */
+
+window.SHOPS = [
+  {
+    id: "adams",
+    name: "Adams' Antiquarian Book Shop",
+    tags: "Antiquarian &bull; Rare &bull; Fine Books",
+    type: "Rare &amp; Antiquarian",
+    address: "602 Main St",
+    hoursShort: "Daily 11&ndash;5 (summer)",
+    image: "https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=900&q=80",
+    short: "The first bookshop in the Book Village. Fine books, art, and tea across three full floors of 17th&ndash;20th century texts. Diana &amp; Bill Adams, proprietors.",
+    long: [
+      "Adams' Antiquarian Book Shop was the very first bookshop in the Hobart Book Village. It offers fine books, art, and tea in a bright, cordial atmosphere that makes both the seasoned collector and the casual browser feel welcome.",
+      "Three full floors hold 17th, 18th, 19th &amp; 20th century texts spanning fiction, biography, art, music, theatre, dance, etiquette, graphic arts, poetry, Greek and Latin texts, theology, science, natural history, and American, world, and local history. The lower level &mdash; with a deck overlooking the West Branch of the Delaware &mdash; is stocked with 20th-century fiction and non-fiction. Don't let the word \"Antiquarian\" stop you from exploring the whole shop."
+    ],
+    specialties: ["Fiction", "Biography", "Art &amp; Music", "Theatre &amp; Dance", "Poetry", "Greek &amp; Latin", "Theology", "Science", "Natural History", "Local History"],
+    owners: "Diana &amp; Bill Adams",
+    phone: "607-538-9080",
+    website: "https://whabooks.com/",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm; Holiday Mondays 11 am &ndash; 3 pm" }
+    ]
+  },
+  {
+    id: "blenheim",
+    name: "Blenheim Hill Books",
+    tags: "Fiction &bull; Poetry &bull; Women's Studies",
+    type: "New &amp; Used",
+    address: "698 Main St",
+    hoursShort: "Fri&ndash;Mon 11&ndash;5",
+    image: "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=900&q=80",
+    short: "Thousands of new &amp; used titles, reasonably priced, in a warm shop run by retired professors Barbara Balliet &amp; Cheryl Clarke &mdash; co-founders of the Hobart Festival of Women Writers.",
+    long: [
+      "In the middle of the Book Village, Blenheim Hill Books presents thousands of new and used titles across many categories, all priced reasonably for the book lover. A warm atmosphere invites readers to chat about books as they browse.",
+      "Strengths include fiction, poetry, children's books, women's studies, mysteries and suspense, cooking, gardening &amp; nature, biography, military history, LGBT, art, photography &amp; architecture, and history. Run by retired professors Barbara Balliet &amp; Cheryl Clarke, the shop also helped found the Hobart Festival of Women Writers. Good hunting!"
+    ],
+    specialties: ["Fiction", "Poetry", "Children's Books", "Women's Studies", "Mysteries", "Cooking", "Gardening &amp; Nature", "Biography", "Art &amp; Architecture", "History"],
+    owners: "Barbara Balliet &amp; Cheryl Clarke",
+    phone: "607-538-3046",
+    website: "https://www.blenheimhillbooks.com/",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Friday &ndash; Monday 11 am &ndash; 5 pm; Holiday Mondays 11 am &ndash; 3 pm" }
+    ]
+  },
+  {
+    id: "liberty-rock",
+    name: "Liberty Rock Books",
+    tags: "General &bull; 50,000+ Volumes",
+    type: "Used &amp; Scarce",
+    address: "Main St",
+    hoursShort: "Weekends 10&ndash;5",
+    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&q=80",
+    short: "The village's largest store &mdash; a 5,000 sq ft building with a main retail space, an art gallery, and a consignment room, holding 50,000+ used and scarce books. Say hello to Libby, the resident cat.",
+    long: [
+      "Liberty Rock Books operates within a 5,000 sq ft building that also includes a consignment room and an art gallery for original works, workshops, and readings. With capacity for 50,000-plus books, the shop's owners continue as broad generalists with specialty collections assembled over 45-plus years.",
+      "Highlights include a large selection of 19th- and 20th-century children's books (the \"Tinkertown KinderBooks\" section), extensive art books, science fiction, and religious books, plus a sizeable vintage jazz record collection and Carlton F. Bloodgood's 40,000 vintage postcards of New York State. Consignment partners and local sellers round out the shelves. Plan to stay a while &mdash; and meet Libby, the official feline greeter who likes to sleep by the front door."
+    ],
+    specialties: ["Children's Books", "Art Books", "Science Fiction", "Religion", "Vintage Jazz Records", "NY Postcards", "Consignment", "Local Authors"],
+    owners: "John &amp; Jim Mahoney and Tom Liotta",
+    phone: "607-538-1760",
+    website: "",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 10 am &ndash; 5 pm (occasionally closed Tuesdays &mdash; call ahead)" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Saturday &amp; Sunday 10 am &ndash; 5 pm; Holiday Mondays 10 am &ndash; 3 pm" }
+    ]
+  },
+  {
+    id: "creative-corner",
+    name: "Creative Corner Books",
+    tags: "Cookbooks &bull; Crafts &bull; DIY",
+    type: "New &amp; Vintage",
+    address: "607 Main St",
+    hoursShort: "Thu&ndash;Sun 11&ndash;5",
+    image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=900&q=80",
+    short: "Cooks and crafters find inspiration in a bright, cozy setting &mdash; an eclectic collection of new, used, and vintage cookbooks plus craft, hobby, and DIY titles. Kathy &amp; George Duyer, proprietors.",
+    long: [
+      "At Creative Corner Books, cooks and crafters find inspiration in a bright, cozy setting. The shop boasts an eclectic collection of cookbooks &mdash; new, used, and vintage &mdash; from well-known chefs and country cooks alike.",
+      "A varied inventory of craft, hobby, and DIY books spans needlecrafts, quilting, paper crafts, bookbinding, gardening, jewelry, woodworking, mosaics, and dozens of other projects. Come browse, chat, linger over a cup of tea, and dream up your next ingenious undertaking or delectable dessert."
+    ],
+    specialties: ["Cookbooks", "Needlecrafts", "Quilting", "Paper Crafts", "Bookbinding", "Gardening", "Jewelry", "Woodworking"],
+    owners: "Kathy &amp; George Duyer",
+    phone: "607-386-2525",
+    website: "http://www.creativecornerbooks.com/",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Thursday &ndash; Sunday 11 am &ndash; 5 pm; Holiday Mondays 11 am &ndash; 3 pm" }
+    ]
+  },
+  {
+    id: "ny-books",
+    name: "NY Books &amp; Ephemera",
+    tags: "New York State &bull; Ephemera &bull; Local",
+    type: "Regional Focus",
+    address: "607 Main St",
+    hoursShort: "Thu&ndash;Sun 11&ndash;5",
+    image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80",
+    short: "Everything New York &mdash; new, used, and vintage books and ephemera on the Empire State. In the same space, the \"Made in New York\" shop offers local food and handmade gifts.",
+    long: [
+      "New York Books &amp; Ephemera, opened in 2020, offers new, used, and vintage books and ephemera relating to New York State &mdash; architecture, arts and culture, biographies and memoirs of remarkable New Yorkers, state and local history, folklore, nature, and travel. Everything New York.",
+      "In the same location, the \"Made in New York\" shop offers locally produced food and gifts handmade by New York artisans: jam, honey, maple syrup, pancake mix, tea, coffee, knitted and crocheted items, jewelry, kitchen linens, tote bags, hand-carved cutting boards, and more &mdash; made with love in the Catskills. An extension of Creative Corner Books."
+    ],
+    specialties: ["NY History", "NY Architecture", "Arts &amp; Culture", "Biography", "Folklore", "Nature", "Travel", "Made in NY Gifts"],
+    owners: "Kathy &amp; George Duyer",
+    phone: "607-386-2525",
+    website: "",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Thursday &ndash; Sunday 11 am &ndash; 5 pm; Holiday Mondays 11 am &ndash; 3 pm" }
+    ]
+  },
+  {
+    id: "lioneyes",
+    name: "LionEyesBooks",
+    tags: "Art &bull; Affordable Finds",
+    type: "Art Books",
+    address: "Main St",
+    hoursShort: "Weekends 11&ndash;5",
+    image: "https://images.unsplash.com/photo-1499332347742-4946bddc7d94?w=900&q=80",
+    short: "Art, art, and more art &mdash; affordable books on well-known, lesser-known, and \"why-aren't-they-known?\" artists, hand-picked and priced with passion by Randi Sussman-Kim.",
+    long: [
+      "Art, art, and more art is what you'll find at LionEyesBooks, where sharing affordable finds is the whole passion. Browse the shelves and you'll come upon well-known, lesser-known, and \"why-aren't-they-known?\" artists.",
+      "The inventory is arranged and priced according to the owner's own attachment to the art, artist, and text &mdash; because here, the excitement is always in the hunt. \"Always searching for your favorites.\" &mdash; Randi Sussman-Kim, the shop's self-described Head Huntress."
+    ],
+    specialties: ["Art Books", "Artist Monographs", "Affordable Finds"],
+    owners: "Randi Sussman-Kim",
+    phone: "631-926-1757",
+    website: "",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
+    ]
+  },
+  {
+    id: "quarry",
+    name: "Quarry Books",
+    tags: "Mystery &bull; Sci-Fi",
+    type: "Mystery &amp; Sci-Fi",
+    address: "645 Main St",
+    hoursShort: "Weekends 11&ndash;5",
+    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=900&q=80",
+    short: "Devoted to mysteries and science fiction &mdash; now a section within The Hobart Exchange, inside the Historic Hobart Inn. A trove for genre lovers in the heart of the village.",
+    long: [
+      "Quarry Books is devoted to mysteries and science fiction &mdash; a trove for genre lovers right in the heart of the village.",
+      "The shop is now a section within The Hobart Exchange, inside the Historic Hobart Inn at 645 Main Street, under the Exchange's management."
+    ],
+    specialties: ["Mysteries", "Science Fiction"],
+    owners: "Managed by The Hobart Exchange",
+    phone: "845-282-6397",
+    website: "",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
+    ]
+  },
+  {
+    id: "more-good-books",
+    name: "More Good Books",
+    tags: "Trains &bull; Ships &bull; Autos &bull; Hobbies",
+    type: "Specialty",
+    address: "645 Main St",
+    hoursShort: "Weekends 11&ndash;5",
+    image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&q=80",
+    short: "A niche shop for railroads, ships &amp; boats, automobiles, games, sports, hobbies, and pets &mdash; great prices in the multi-vendor space on the north side of the Historic Hobart Inn.",
+    long: [
+      "More Good Books offers a focused selection at great prices on railroads, ships and boats, automobiles, games and sports, hobbies, and pets.",
+      "Its stock is a combined collection drawn from Adams' and Blenheim Hill Books, which frees up shelf space in each of those shops. You'll find it in the middle space of a multi-vendor location on the north side of the Historic Hobart Inn at 645 Main Street, with plenty of parking."
+    ],
+    specialties: ["Railroads", "Ships &amp; Boats", "Automobiles", "Games &amp; Sports", "Hobbies", "Pets"],
+    owners: "Adams' &amp; Blenheim Hill Books",
+    phone: "607-538-9080",
+    website: "",
+    hours: [
+      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
+      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
+    ]
+  }
+];
