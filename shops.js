@@ -145,7 +145,7 @@ window.SHOPS = [
     type: "Books",
     address: "Book Village Inn, 760 Main St",
     hoursShort: "See the Inn",
-    image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80",
+    image: "images/hidden-bookshop.jpg",
     short: "The village's newest chapter &mdash; a hidden bookshop tucked inside the Book Village Inn, waiting to be discovered while you stay, sip, or browse.",
     long: [
       "Tucked inside the Book Village Inn at 760 Main Street, The Hidden Bookshop is the Book Village's newest addition &mdash; a bookshop to stumble upon while you're staying at the Inn or stopping by the bar.",
