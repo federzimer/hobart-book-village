@@ -277,6 +277,7 @@
             return '<a class="bookstore-card fade-up" href="shop.html?id=' + s.id + '">' +
                 '<img class="bookstore-img" src="' + s.image + '" alt="' + s.name + '" loading="lazy">' +
                 '<div class="bookstore-info">' +
+                    (s.venue ? '<div><span class="venue-chip">&#8627; Inside ' + s.venue + '</span></div>' : '') +
                     '<span class="bookstore-tag">' + s.tags + '</span>' +
                     '<h3 class="bookstore-name">' + s.name + '</h3>' +
                     '<p class="bookstore-desc">' + s.short + '</p>' +

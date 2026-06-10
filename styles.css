@@ -239,6 +239,9 @@
         /* Make a whole bookshop card a clickable link to its page */
         a.bookstore-card { display: block; text-decoration: none; color: inherit; }
 
+        /* Shared "venue" badge — groups shops that share a building/store */
+        .venue-chip { display: inline-flex; align-items: center; gap: 0.35rem; font-family: 'Inter', sans-serif; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--deep-green); background: rgba(45,74,62,0.09); border: 1px solid rgba(45,74,62,0.22); padding: 0.3rem 0.7rem; border-radius: 20px; margin-bottom: 0.7rem; }
+
         /* Inner pages have no hero, so push content below the fixed nav */
         body.has-solid-nav { padding-top: 74px; }
 

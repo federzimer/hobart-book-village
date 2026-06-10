@@ -57,6 +57,7 @@
             var contact = "";
             if (shop.owners) contact += '<div class="info-row"><h3>Proprietors</h3><p>' + shop.owners + '</p></div>';
             contact += '<div class="info-row"><h3>Find It</h3><p>' + shop.address + ', Hobart, NY 13788</p></div>';
+            if (shop.venue) contact += '<div class="info-row"><h3>Inside</h3><p>' + shop.venue + '</p></div>';
             if (shop.phone) contact += '<div class="info-row"><h3>Phone</h3><p>' + shop.phone + '</p></div>';
             if (shop.website) {
                 contact += '<div class="info-row"><a class="btn btn-primary" href="' + shop.website +
@@ -67,6 +68,7 @@
                 '<img class="shop-cover" src="' + shop.image + '" alt="' + shop.name + '">' +
                 '<div class="shop-layout">' +
                     '<div class="shop-main">' +
+                        (shop.venue ? '<div><span class="venue-chip">&#8627; Inside ' + shop.venue + '</span></div>' : '') +
                         '<span class="bookstore-tag">' + shop.tags + '</span>' +
                         '<h1>' + shop.name + '</h1>' +
                         longHtml +

@@ -7,6 +7,9 @@
 
    Fields:
      id          short slug used in the URL (shop.html?id=adams)
+     venue       OPTIONAL — name of a shared building/store this shop sits
+                 inside (e.g. "The Books Around the Corner"). Shops with the
+                 same venue show a matching badge so they read as a group.
      name        display name
      tags        specialty line shown on the card pill
      type        short "kind of shop" chip on the card
@@ -30,7 +33,7 @@ window.SHOPS = [
     type: "Rare &amp; Antiquarian",
     address: "602 Main St",
     hoursShort: "Daily 11&ndash;5 (summer)",
-    image: "https://images.unsplash.com/photo-1524578271613-d550eacf6090?w=900&q=80",
+    image: "images/adams.jpg",
     short: "The first bookshop in the Book Village. Fine books, art, and tea across three full floors of 17th&ndash;20th century texts. Diana &amp; Bill Adams, proprietors.",
     long: [
       "Adams' Antiquarian Book Shop was the very first bookshop in the Hobart Book Village. It offers fine books, art, and tea in a bright, cordial atmosphere that makes both the seasoned collector and the casual browser feel welcome.",
@@ -52,7 +55,7 @@ window.SHOPS = [
     type: "New &amp; Used",
     address: "698 Main St",
     hoursShort: "Fri&ndash;Mon 11&ndash;5",
-    image: "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=900&q=80",
+    image: "images/blenheim.jpg",
     short: "Thousands of new &amp; used titles, reasonably priced, in a warm shop run by retired professors Barbara Balliet &amp; Cheryl Clarke &mdash; co-founders of the Hobart Festival of Women Writers.",
     long: [
       "In the middle of the Book Village, Blenheim Hill Books presents thousands of new and used titles across many categories, all priced reasonably for the book lover. A warm atmosphere invites readers to chat about books as they browse.",
@@ -74,7 +77,7 @@ window.SHOPS = [
     type: "Used &amp; Scarce",
     address: "Main St",
     hoursShort: "Weekends 10&ndash;5",
-    image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?w=900&q=80",
+    image: "images/liberty-rock.jpg",
     short: "The village's largest store &mdash; a 5,000 sq ft building with a main retail space, an art gallery, and a consignment room, holding 50,000+ used and scarce books. Say hello to Libby, the resident cat.",
     long: [
       "Liberty Rock Books operates within a 5,000 sq ft building that also includes a consignment room and an art gallery for original works, workshops, and readings. With capacity for 50,000-plus books, the shop's owners continue as broad generalists with specialty collections assembled over 45-plus years.",
@@ -91,6 +94,7 @@ window.SHOPS = [
   },
   {
     id: "quarry",
+    venue: "The Books Around the Corner",
     name: "Quarry Books",
     tags: "Mystery &bull; Sci-Fi",
     type: "Mystery &amp; Sci-Fi",
@@ -113,12 +117,13 @@ window.SHOPS = [
   },
   {
     id: "more-good-books",
+    venue: "The Books Around the Corner",
     name: "More Good Books",
     tags: "Trains &bull; Ships &bull; Autos &bull; Hobbies",
     type: "Specialty",
     address: "645 Main St",
     hoursShort: "Weekends 11&ndash;5",
-    image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=900&q=80",
+    image: "images/more-good-books.jpg",
     short: "A niche shop for railroads, ships &amp; boats, automobiles, games, sports, hobbies, and pets &mdash; great prices in the multi-vendor space on the north side of the Historic Hobart Inn.",
     long: [
       "More Good Books offers a focused selection at great prices on railroads, ships and boats, automobiles, games and sports, hobbies, and pets.",
