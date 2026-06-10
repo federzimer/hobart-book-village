@@ -90,28 +90,6 @@ window.SHOPS = [
     ]
   },
   {
-    id: "creative-corner",
-    name: "Creative Corner Books",
-    tags: "Cookbooks &bull; Crafts &bull; DIY",
-    type: "New &amp; Vintage",
-    address: "607 Main St",
-    hoursShort: "Thu&ndash;Sun 11&ndash;5",
-    image: "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=900&q=80",
-    short: "Cooks and crafters find inspiration in a bright, cozy setting &mdash; an eclectic collection of new, used, and vintage cookbooks plus craft, hobby, and DIY titles. Kathy &amp; George Duyer, proprietors.",
-    long: [
-      "At Creative Corner Books, cooks and crafters find inspiration in a bright, cozy setting. The shop boasts an eclectic collection of cookbooks &mdash; new, used, and vintage &mdash; from well-known chefs and country cooks alike.",
-      "A varied inventory of craft, hobby, and DIY books spans needlecrafts, quilting, paper crafts, bookbinding, gardening, jewelry, woodworking, mosaics, and dozens of other projects. Come browse, chat, linger over a cup of tea, and dream up your next ingenious undertaking or delectable dessert."
-    ],
-    specialties: ["Cookbooks", "Needlecrafts", "Quilting", "Paper Crafts", "Bookbinding", "Gardening", "Jewelry", "Woodworking"],
-    owners: "Kathy &amp; George Duyer",
-    phone: "607-386-2525",
-    website: "http://www.creativecornerbooks.com/",
-    hours: [
-      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
-      { season: "Columbus Day &ndash; Memorial Day", text: "Thursday &ndash; Sunday 11 am &ndash; 5 pm; Holiday Mondays 11 am &ndash; 3 pm" }
-    ]
-  },
-  {
     id: "quarry",
     name: "Quarry Books",
     tags: "Mystery &bull; Sci-Fi",

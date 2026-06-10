@@ -64,7 +64,7 @@
           '<img src="logo-v2.png" alt="Hobart Book Village">' +
           "<h3>Hobart Book Village</h3>" +
         "</div>" +
-        "<p>The only Book Village east of the Mississippi &mdash; seven independent bookshops in the Northern Catskills, where a quiet Main Street became a destination for readers.</p>" +
+        "<p>The only Book Village east of the Mississippi &mdash; six independent bookshops in the Northern Catskills, where a quiet Main Street became a destination for readers.</p>" +
       "</div>" +
       '<div class="footer-col"><h4>Explore</h4><ul>' +
         '<li><a href="index.html#bookstores">Bookshops</a></li>' +
