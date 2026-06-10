@@ -112,50 +112,6 @@ window.SHOPS = [
     ]
   },
   {
-    id: "ny-books",
-    name: "NY Books &amp; Ephemera",
-    tags: "New York State &bull; Ephemera &bull; Local",
-    type: "Regional Focus",
-    address: "607 Main St",
-    hoursShort: "Thu&ndash;Sun 11&ndash;5",
-    image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80",
-    short: "Everything New York &mdash; new, used, and vintage books and ephemera on the Empire State. In the same space, the \"Made in New York\" shop offers local food and handmade gifts.",
-    long: [
-      "New York Books &amp; Ephemera, opened in 2020, offers new, used, and vintage books and ephemera relating to New York State &mdash; architecture, arts and culture, biographies and memoirs of remarkable New Yorkers, state and local history, folklore, nature, and travel. Everything New York.",
-      "In the same location, the \"Made in New York\" shop offers locally produced food and gifts handmade by New York artisans: jam, honey, maple syrup, pancake mix, tea, coffee, knitted and crocheted items, jewelry, kitchen linens, tote bags, hand-carved cutting boards, and more &mdash; made with love in the Catskills. An extension of Creative Corner Books."
-    ],
-    specialties: ["NY History", "NY Architecture", "Arts &amp; Culture", "Biography", "Folklore", "Nature", "Travel", "Made in NY Gifts"],
-    owners: "Kathy &amp; George Duyer",
-    phone: "607-386-2525",
-    website: "",
-    hours: [
-      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
-      { season: "Columbus Day &ndash; Memorial Day", text: "Thursday &ndash; Sunday 11 am &ndash; 5 pm; Holiday Mondays 11 am &ndash; 3 pm" }
-    ]
-  },
-  {
-    id: "lioneyes",
-    name: "LionEyesBooks",
-    tags: "Art &bull; Affordable Finds",
-    type: "Art Books",
-    address: "Main St",
-    hoursShort: "Weekends 11&ndash;5",
-    image: "https://images.unsplash.com/photo-1499332347742-4946bddc7d94?w=900&q=80",
-    short: "Art, art, and more art &mdash; affordable books on well-known, lesser-known, and \"why-aren't-they-known?\" artists, hand-picked and priced with passion by Randi Sussman-Kim.",
-    long: [
-      "Art, art, and more art is what you'll find at LionEyesBooks, where sharing affordable finds is the whole passion. Browse the shelves and you'll come upon well-known, lesser-known, and \"why-aren't-they-known?\" artists.",
-      "The inventory is arranged and priced according to the owner's own attachment to the art, artist, and text &mdash; because here, the excitement is always in the hunt. \"Always searching for your favorites.\" &mdash; Randi Sussman-Kim, the shop's self-described Head Huntress."
-    ],
-    specialties: ["Art Books", "Artist Monographs", "Affordable Finds"],
-    owners: "Randi Sussman-Kim",
-    phone: "631-926-1757",
-    website: "",
-    hours: [
-      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
-      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
-    ]
-  },
-  {
     id: "quarry",
     name: "Quarry Books",
     tags: "Mystery &bull; Sci-Fi",
@@ -197,6 +153,27 @@ window.SHOPS = [
     hours: [
       { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
       { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
+    ]
+  },
+  {
+    id: "hidden-bookshop",
+    name: "The Hidden Bookshop at the Inn",
+    tags: "Books &bull; At the Inn",
+    type: "Books",
+    address: "Book Village Inn, 760 Main St",
+    hoursShort: "See the Inn",
+    image: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80",
+    short: "The village's newest chapter &mdash; a hidden bookshop tucked inside the Book Village Inn, waiting to be discovered while you stay, sip, or browse.",
+    long: [
+      "Tucked inside the Book Village Inn at 760 Main Street, The Hidden Bookshop is the Book Village's newest addition &mdash; a bookshop to stumble upon while you're staying at the Inn or stopping by the bar.",
+      "More details about its collection and hours are on the way."
+    ],
+    specialties: ["Books", "Hidden Finds"],
+    owners: "Book Village Inn",
+    phone: "",
+    website: "https://www.bookvillageinn.com/",
+    hours: [
+      { season: "Hours", text: "Open with the Book Village Inn &mdash; details coming soon" }
     ]
   }
 ];
