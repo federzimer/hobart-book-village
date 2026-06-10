@@ -19,11 +19,11 @@
 window.EVENTS = [
   {
     badgeTop: "Annual",
-    badgeBig: "Sept",
+    badgeBig: "June",
     type: "Literary Festival",
     title: "Festival of Women Writers",
     short: "The village's flagship literary event &mdash; a weekend of readings, panels, and workshops celebrating women's voices.",
-    long: "The Hobart Festival of Women Writers, co-founded by the booksellers of Blenheim Hill Books, is the village's flagship literary event. Each year it brings authors, poets, and readers together for a weekend of readings, panels, and hands-on workshops that celebrate women's voices in literature."
+    long: "The Hobart Festival of Women Writers, co-founded by the booksellers of Blenheim Hill Books, is the village's flagship literary event. Held each June, it brings authors, poets, and readers together for a weekend of readings, panels, and hands-on workshops that celebrate women's voices in literature."
   },
   {
     badgeTop: "Sat",
@@ -40,13 +40,5 @@ window.EVENTS = [
     title: "Author Readings & Signings",
     short: "Throughout the year the shops host visiting and local authors for readings and book signings.",
     long: "Beyond the festival, the bookshops host author readings and signings throughout the year &mdash; intimate gatherings where visiting and local writers share new work. Watch the village calendar and the shops' social channels for upcoming dates."
-  },
-  {
-    badgeTop: "Special",
-    badgeBig: "Sales",
-    type: "Throughout the Year",
-    title: "Village-Wide Book Sales",
-    short: "Special seasonal sales draw collectors and locals to stock their shelves for the months ahead.",
-    long: "The Book Village hosts special sales and events through the seasons, drawing hundreds of collectors, vacationers, and local residents. They're a great way to stock a personal library for summer, fall, and winter &mdash; or to kick off holiday shopping in the mountains."
   }
 ];
