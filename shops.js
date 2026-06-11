@@ -8,7 +8,7 @@
    Fields:
      id          short slug used in the URL (shop.html?id=adams)
      venue       OPTIONAL — name of a shared building/store this shop sits
-                 inside (e.g. "The Books Around the Corner"). Shops with the
+                 inside (e.g. "The Shops Around the Corner"). Shops with the
                  same venue show a matching badge so they read as a group.
      name        display name
      tags        specialty line shown on the card pill
@@ -94,48 +94,46 @@ window.SHOPS = [
   },
   {
     id: "quarry",
-    venue: "The Books Around the Corner",
+    venue: "The Shops Around the Corner",
     name: "Quarry Books",
     tags: "Mystery &bull; Sci-Fi",
     type: "Mystery &amp; Sci-Fi",
-    address: "645 Main St",
-    hoursShort: "Weekends 11&ndash;5",
+    address: "40 Cornell Ave",
+    hoursShort: "Daily 11&ndash;5",
     image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=900&q=80",
-    short: "Devoted to mysteries and science fiction &mdash; now a section within The Hobart Exchange, inside the Historic Hobart Inn. A trove for genre lovers in the heart of the village.",
+    short: "Devoted to mysteries and science fiction &mdash; a trove for genre lovers, now part of The Shops Around the Corner, the multi-vendor space at 40 Cornell Avenue just off Main Street.",
     long: [
-      "Quarry Books is devoted to mysteries and science fiction &mdash; a trove for genre lovers right in the heart of the village.",
-      "The shop is now a section within The Hobart Exchange, inside the Historic Hobart Inn at 645 Main Street, under the Exchange's management."
+      "Quarry Books is devoted to mysteries and science fiction &mdash; a trove for genre lovers in the heart of the village.",
+      "Since January 2026 it has been part of The Shops Around the Corner, a multi-vendor establishment at 40 Cornell Avenue. Formerly on Main Street, the shops are now an easy walk just off Main &mdash; directly across from the Book Village Inn &mdash; and open daily. Look for the \"Open\" flags and use either of the two entrance doors."
     ],
     specialties: ["Mysteries", "Science Fiction"],
-    owners: "Managed by The Hobart Exchange",
+    owners: "",
     phone: "845-282-6397",
     website: "",
     hours: [
-      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
-      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
+      { season: "Year-round", text: "Daily, 11 am &ndash; 5 pm" }
     ]
   },
   {
     id: "more-good-books",
-    venue: "The Books Around the Corner",
+    venue: "The Shops Around the Corner",
     name: "More Good Books",
     tags: "Trains &bull; Ships &bull; Autos &bull; Hobbies",
     type: "Specialty",
-    address: "645 Main St",
-    hoursShort: "Weekends 11&ndash;5",
+    address: "40 Cornell Ave",
+    hoursShort: "Daily 11&ndash;5",
     image: "images/more-good-books.jpg",
-    short: "A niche shop for railroads, ships &amp; boats, automobiles, games, sports, hobbies, and pets &mdash; great prices in the multi-vendor space on the north side of the Historic Hobart Inn.",
+    short: "A niche shop for railroads, ships &amp; boats, automobiles, games, sports, hobbies, and pets &mdash; great prices, now part of The Shops Around the Corner at 40 Cornell Avenue.",
     long: [
       "More Good Books offers a focused selection at great prices on railroads, ships and boats, automobiles, games and sports, hobbies, and pets.",
-      "Its stock is a combined collection drawn from Adams' and Blenheim Hill Books, which frees up shelf space in each of those shops. You'll find it in the middle space of a multi-vendor location on the north side of the Historic Hobart Inn at 645 Main Street, with plenty of parking."
+      "Its stock is a combined collection drawn from Adams' and Blenheim Hill Books, which frees up shelf space in each of those shops. Since January 2026 you'll find it within The Shops Around the Corner, a multi-vendor establishment at 40 Cornell Avenue &mdash; an easy walk just off Main Street, directly across from the Book Village Inn, with plenty of parking and open daily."
     ],
     specialties: ["Railroads", "Ships &amp; Boats", "Automobiles", "Games &amp; Sports", "Hobbies", "Pets"],
     owners: "Adams' &amp; Blenheim Hill Books",
     phone: "607-538-9080",
     website: "",
     hours: [
-      { season: "Memorial Day &ndash; Columbus Day", text: "Daily, 11 am &ndash; 5 pm" },
-      { season: "Columbus Day &ndash; Memorial Day", text: "Weekends 11 am &ndash; 5 pm" }
+      { season: "Year-round", text: "Daily, 11 am &ndash; 5 pm" }
     ]
   },
   {
